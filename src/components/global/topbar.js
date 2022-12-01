@@ -14,7 +14,7 @@ const Topbar = () => {
     >
       <Container maxWidth="lg">
         <Grid container>
-          <Grid item container sm={6} fontSize={15}>
+          <Grid item container sm={6} fontSize={17}>
             <Link
               underline="none"
               color="secondary"
@@ -51,6 +51,7 @@ const Topbar = () => {
               color="secondary"
               sx={{
                 px: 3,
+                fontSize: 17,
                 borderLeft: "1px solid",
                 borderLeftColor: "border.main",
               }}

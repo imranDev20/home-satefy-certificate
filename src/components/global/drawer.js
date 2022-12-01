@@ -12,10 +12,20 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { Slide, useScrollTrigger } from "@mui/material";
+import {
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Slide,
+  useScrollTrigger,
+} from "@mui/material";
 import { Link } from "gatsby";
-import ArrowCircleRightRoundedIcon from "@mui/icons-material/ArrowCircleRightRounded";
+import { FaCalculator } from "react-icons/fa";
 import { theme } from "./layout";
+import CustomizedDialogs from "./dialog";
 
 const drawerWidth = 240;
 export const navItems = ["Home", "About", "Services", "Portfolio", "Contact"];
@@ -37,6 +47,7 @@ function HideOnScroll(props) {
 }
 
 const DrawerAppBar = (props) => {
+  const [dialogOpen, setDialogOpen] = React.useState(false);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -70,7 +81,7 @@ const DrawerAppBar = (props) => {
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box>
+    <>
       <HideOnScroll>
         <AppBar
           elevation={0}
@@ -82,74 +93,79 @@ const DrawerAppBar = (props) => {
           }}
           position="sticky"
         >
-          <Toolbar
-            disableGutters
-            sx={{
-              height: "70px",
-              display: "flex",
-              alignItems: "center",
-              pl: 5,
-            }}
-          >
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h6"
-              component="div"
+          <Container>
+            <Toolbar
+              disableGutters
               sx={{
-                flexGrow: 1,
-                color: "primary.main",
-                display: { xs: "none", sm: "block" },
+                height: "70px",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              QSC Electrical
-            </Typography>
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
-              {navItems.map((item) => (
-                <Button
-                  key={item}
-                  component={Link}
-                  activeStyle={{ color: theme.palette.primary.main }}
-                  to={
-                    item === "Home"
-                      ? "/"
-                      : "/" + item.toLowerCase().replaceAll(" ", "-")
-                  }
-                  sx={{
-                    color: "secondary.main",
-                    fontWeight: 600,
-                    mx: 1,
-                    "&:hover": {
-                      color: "primary.main",
-                    },
-                  }}
-                >
-                  {item}
-                </Button>
-              ))}
-            </Box>
-            <Button
-              variant="contained"
-              color="primary"
-              endIcon={<ArrowCircleRightRoundedIcon />}
-              sx={{
-                height: "100%",
-                borderRadius: 0,
-                "&:hover": {
-                  backgroundColor: "secondary.main",
-                },
-              }}
-            >
-              Get Appointment
-            </Button>
-          </Toolbar>
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2, display: { sm: "none" } }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{
+                  flexGrow: 1,
+                  color: "primary.main",
+                  display: { xs: "none", sm: "block" },
+                }}
+              >
+                Home Safety Certificate
+              </Typography>
+              <Box sx={{ display: { xs: "none", sm: "block" } }}>
+                {navItems.map((item) => (
+                  <Button
+                    key={item}
+                    component={Link}
+                    activeStyle={{ color: theme.palette.primary.main }}
+                    to={
+                      item === "Home"
+                        ? "/"
+                        : "/" + item.toLowerCase().replaceAll(" ", "-")
+                    }
+                    sx={{
+                      color: "secondary.main",
+                      fontWeight: 600,
+                      mx: 1,
+                      "&:hover": {
+                        color: "primary.main",
+                      },
+                    }}
+                  >
+                    {item}
+                  </Button>
+                ))}
+              </Box>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={() => setDialogOpen(true)}
+                endIcon={<FaCalculator />}
+                sx={{
+                  borderRadius: 1,
+                  py: 1.5,
+                  ml: 3,
+                  fontSize: 16,
+                  fontWeight: 600,
+                  "&:hover": {
+                    backgroundColor: "secondary.main",
+                  },
+                }}
+              >
+                Get Free Estimates
+              </Button>
+            </Toolbar>
+          </Container>
         </AppBar>
       </HideOnScroll>
       <Box component="nav">
@@ -175,7 +191,8 @@ const DrawerAppBar = (props) => {
       <Box component="main" sx={{ width: "100%" }}>
         {props.children}
       </Box>
-    </Box>
+      <CustomizedDialogs open={dialogOpen} setOpen={setDialogOpen} />
+    </>
   );
 };
 

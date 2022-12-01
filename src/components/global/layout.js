@@ -12,8 +12,9 @@ import Topbar from "./topbar";
 
 export const theme = createTheme({
   typography: {
+    fontSize: 17,
     fontFamily: [
-      "Jost",
+      "Barlow Semi Condensed",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',

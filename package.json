@@ -21,6 +21,7 @@
     "@mdx-js/react": "^2.1.5",
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
+    "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "gatsby": "^5.2.0",
     "gatsby-plugin-image": "^3.2.0",
     "gatsby-plugin-loadable-components-ssr": "^4.3.2",
