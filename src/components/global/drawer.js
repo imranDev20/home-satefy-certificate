@@ -23,7 +23,7 @@ import {
   useScrollTrigger,
 } from "@mui/material";
 import { Link } from "gatsby";
-import { FaCalculator } from "react-icons/fa";
+import { CgArrowLongRight } from "react-icons/cg";
 import { theme } from "./layout";
 import CustomizedDialogs from "./dialog";
 
@@ -127,14 +127,14 @@ const DrawerAppBar = (props) => {
                   <Button
                     key={item}
                     component={Link}
-                    activeStyle={{ color: theme.palette.primary.main }}
+                    activeStyle={{ color: theme.palette.secondary.main }}
                     to={
                       item === "Home"
                         ? "/"
                         : "/" + item.toLowerCase().replaceAll(" ", "-")
                     }
                     sx={{
-                      color: "secondary.main",
+                      color: "primary.main",
                       fontWeight: 600,
                       mx: 1,
                       "&:hover": {
@@ -147,20 +147,11 @@ const DrawerAppBar = (props) => {
                 ))}
               </Box>
               <Button
-                variant="contained"
+                variant="blue"
                 color="primary"
+                sx={{ ml: 2 }}
                 onClick={() => setDialogOpen(true)}
-                endIcon={<FaCalculator />}
-                sx={{
-                  borderRadius: 1,
-                  py: 1.5,
-                  ml: 3,
-                  fontSize: 16,
-                  fontWeight: 600,
-                  "&:hover": {
-                    backgroundColor: "secondary.main",
-                  },
-                }}
+                endIcon={<CgArrowLongRight />}
               >
                 Get Free Estimates
               </Button>

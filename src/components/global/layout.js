@@ -12,9 +12,8 @@ import Topbar from "./topbar";
 
 export const theme = createTheme({
   typography: {
-    fontSize: 17,
     fontFamily: [
-      "Barlow Semi Condensed",
+      "Jost",
       "-apple-system",
       "BlinkMacSystemFont",
       '"Segoe UI"',
@@ -41,18 +40,20 @@ export const theme = createTheme({
     body2: {
       fontSize: 16,
       lineHeight: 1.8,
+      letterSpacing: ".3px",
+      color: "#888888",
     },
   },
   palette: {
     primary: {
       light: "#ffa726",
-      main: "#FF4B00",
+      main: "#004975",
       dark: "#ef6c00",
-      contrastText: "rgba(255, 255, 255, 0.87)",
+      contrastText: "white",
     },
     secondary: {
       light: "#ffa726",
-      main: "#222222",
+      main: "#F7C355",
       dark: "#ef6c00",
       contrastText: "rgba(0, 0, 0, 0.87)",
     },
@@ -91,6 +92,20 @@ export const theme = createTheme({
             },
             px: 3,
             py: 1,
+          }),
+        },
+        {
+          props: { variant: "blue" },
+          style: sx({
+            borderRadius: 20,
+            py: 1.5,
+            px: 3,
+            fontSize: 13,
+            bgcolor: "primary.main",
+            fontWeight: 600,
+            "&:hover": {
+              bgcolor: "secondary.main",
+            },
           }),
         },
         {

@@ -4,25 +4,48 @@
 module.exports = {
   siteMetadata: {
     title: `Home Safety Certificate`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `https://homesafetycert.co.uk`,
   },
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    {
+      gatsbyRemarkPlugins: [
+        {
+          options: {
+            maxWidth: 1920,
+          },
+          resolve: "gatsby-remark-images",
+        },
+      ],
+      options: {
+        extensions: [".mdx", ".md", ".markdown"],
+      },
+      resolve: "gatsby-plugin-mdx",
+    },
     {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-mdx",
-    "gatsby-plugin-sharp",
+    {
+      options: {
+        defaults: {
+          formats: ["auto", "avif", "webp"],
+          placeholder: "blurred",
+          quality: 70,
+        },
+      },
+      resolve: "gatsby-plugin-sharp",
+    },
     "gatsby-transformer-sharp",
+    "gatsby-plugin-loadable-components-ssr",
     {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: `${__dirname}/src/images/`,
       },
       __key: "images",
     },
@@ -35,12 +58,23 @@ module.exports = {
       __key: "pages",
     },
     {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "services",
+        path: "./src/contents/services",
+      },
+    },
+    {
+      resolve: "gatsby-background-image",
+      options: {
+        // add your own characters to escape, replacing the default ':/'
+        specialChars: "/:",
+      },
+    },
+    {
       resolve: "@slixites/gatsby-plugin-google-fonts",
       options: {
-        fonts: [
-          "barlow semi condensed:100,200,300,400,500,600,700,800,900",
-          "source sans pro:300,400,400i,700",
-        ],
+        fonts: ["jost:100,200,300,400,500,600,700,800,900"],
         display: "swap",
         preconnect: true,
         attributes: {
