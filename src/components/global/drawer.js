@@ -26,9 +26,10 @@ import { Link } from "gatsby";
 import { CgArrowLongRight } from "react-icons/cg";
 import { theme } from "./layout";
 import CustomizedDialogs from "./dialog";
+import { Link as GatsbyLink } from "gatsby";
 
 const drawerWidth = 240;
-export const navItems = ["Home", "About", "Services", "Portfolio", "Contact"];
+export const navItems = ["Home", "About", "Services", "Pricing", "Contact"];
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -149,11 +150,13 @@ const DrawerAppBar = (props) => {
               <Button
                 variant="blue"
                 color="primary"
+                to="/quote/"
+                LinkComponent={GatsbyLink}
                 sx={{ ml: 2 }}
                 onClick={() => setDialogOpen(true)}
                 endIcon={<CgArrowLongRight />}
               >
-                Get Free Estimates
+                Request a Quote
               </Button>
             </Toolbar>
           </Container>
@@ -182,7 +185,6 @@ const DrawerAppBar = (props) => {
       <Box component="main" sx={{ width: "100%" }}>
         {props.children}
       </Box>
-      <CustomizedDialogs open={dialogOpen} setOpen={setDialogOpen} />
     </>
   );
 };

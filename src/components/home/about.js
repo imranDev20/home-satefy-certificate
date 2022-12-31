@@ -2,6 +2,9 @@ import { Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { theme } from "../global/layout";
 import Paragraph from "../global/paragraph";
+import { RxCheck } from "react-icons/rx";
+import { CgArrowLongRight } from "react-icons/cg";
+import Heading from "../global/heading";
 
 const features = [
   { id: 1, text: "Same & next day appointment" },
@@ -18,9 +21,10 @@ const About = () => {
       <Grid container>
         <Grid item sm={6}></Grid>
         <Grid item sm={6}>
-          <Typography component="h2" variant="h4">
+          <Heading>
             Experiences On Cleaning Area With Successful Project On Going.
-          </Typography>
+          </Heading>
+
           <Paragraph sx={{ my: 2 }}>
             The Company’s mission is to ensure a professional & personalised
             total homecare solution for all customers. Completely trustworthy
@@ -41,9 +45,12 @@ const About = () => {
                     color: "primary.main",
                     my: 1.5,
                     fontWeight: 500,
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   color="initial"
                 >
+                  <RxCheck fontSize={22} style={{ marginRight: 5 }} />
                   {item.text}
                 </Typography>
               ))}
@@ -57,16 +64,24 @@ const About = () => {
                     color: "primary.main",
                     my: 1.5,
                     fontWeight: 500,
+                    display: "flex",
+                    alignItems: "center",
                   }}
                   color="initial"
                 >
+                  <RxCheck fontSize={22} style={{ marginRight: 5 }} />
                   {item.text}
                 </Typography>
               ))}
             </Grid>
           </Grid>
-          <Button variant="contained" sx={{ mt: 2 }}>
-            Learn More...
+          <Button
+            variant="blue"
+            color="primary"
+            sx={{ mt: 3 }}
+            endIcon={<CgArrowLongRight />}
+          >
+            Read More
           </Button>
         </Grid>
       </Grid>

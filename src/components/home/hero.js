@@ -10,7 +10,7 @@ const Hero = () => {
             item
             sm={6}
             display="flex"
-            direction="column"
+            flexDirection="column"
             justifyContent="center"
             alignItems="flex-start"
           >

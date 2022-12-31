@@ -3,7 +3,6 @@ import React from "react";
 import { theme } from "./layout";
 
 const Paragraph = ({ children, lineHeight, ...props }) => {
-  console.log(props);
   return (
     <Typography
       paragraph

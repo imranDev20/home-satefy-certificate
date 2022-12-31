@@ -43,18 +43,21 @@ const contact = [
 
 const Footer = () => {
   return (
-    <Box component="footer" sx={{ backgroundColor: "secondary.main" }}>
-      <Container maxWidth="lg" sx={{ color: "text.main", py: 5 }}>
+    <Box component="footer" sx={{ backgroundColor: "primary.main" }}>
+      <Container maxWidth="lg" sx={{ color: "white", py: 5 }}>
         <Grid container spacing={5}>
           <Grid item sm={3}>
             <Typography
               component="h3"
               variant="h6"
-              sx={{ color: "white", mb: 4 }}
+              sx={{ color: "secondary.main", mb: 4 }}
             >
               About Company
             </Typography>
-            <Typography paragraph sx={{ ...theme.typography.body2 }}>
+            <Typography
+              paragraph
+              sx={{ ...theme.typography.body2, color: "white" }}
+            >
               MrHandy is your one-call solution for a wide range of maintenance
               and repair needs. We are fully insured professional team job
               right. We arearrive on time in uniform.
@@ -64,7 +67,7 @@ const Footer = () => {
             <Typography
               component="h3"
               variant="h6"
-              sx={{ color: "white", mb: 3 }}
+              sx={{ color: "secondary.main", mb: 3 }}
             >
               Quick Link
             </Typography>
@@ -77,12 +80,12 @@ const Footer = () => {
                 my={2}
                 sx={{
                   ".MuiTypography-root:hover": {
-                    color: "primary.main",
+                    color: "secondary.main",
                     transition: ".5s color ease",
                   },
 
                   "svg:has(+ .MuiTypography-root:hover)": {
-                    color: "primary.main",
+                    color: "secondary.main",
                     transition: ".5s color ease",
                   },
                 }}
@@ -90,7 +93,7 @@ const Footer = () => {
                 <HiChevronRight style={{ marginRight: "5px" }} />
                 <Link
                   sx={{
-                    color: "text.main",
+                    color: "white",
                     textDecoration: "none",
                   }}
                   component={GatsbyLink}
@@ -110,9 +113,9 @@ const Footer = () => {
             <Typography
               component="h3"
               variant="h6"
-              sx={{ color: "white", mb: 3 }}
+              sx={{ color: "secondary.main", mb: 3 }}
             >
-              Services
+              Miscellaneous
             </Typography>
             {others.map((item) => (
               <Stack
@@ -122,12 +125,12 @@ const Footer = () => {
                 my={2}
                 sx={{
                   ".MuiTypography-root:hover": {
-                    color: "primary.main",
+                    color: "secondary.main",
                     transition: ".5s color ease",
                   },
 
                   "svg:has(+ .MuiTypography-root:hover)": {
-                    color: "primary.main",
+                    color: "secondary.main",
                     transition: ".5s color ease",
                   },
                 }}
@@ -135,7 +138,7 @@ const Footer = () => {
                 <HiChevronRight style={{ marginRight: "5px" }} />
                 <Link
                   sx={{
-                    color: "text.main",
+                    color: "white",
                     textDecoration: "none",
                   }}
                   component={GatsbyLink}
@@ -154,7 +157,7 @@ const Footer = () => {
             <Typography
               component="h3"
               variant="h6"
-              sx={{ color: "white", mb: 3 }}
+              sx={{ color: "secondary.main", mb: 3 }}
             >
               Contact Us
             </Typography>
@@ -166,25 +169,26 @@ const Footer = () => {
                 my={2}
                 sx={{
                   ".MuiTypography-root:hover": {
-                    color: item.type.includes("link") ? "primary.main" : null,
+                    color: item.type.includes("link") ? "secondary.main" : null,
                     transition: ".5s color ease",
                   },
 
                   "svg:has(+ a:hover)": {
-                    color: item.type.includes("link") ? "primary.main" : null,
+                    color: item.type.includes("link") ? "secondary.main" : null,
                     transition: ".5s color ease",
                   },
                   a: {
-                    color: "text.main",
+                    color: "white",
                     transition: ".5s color ease",
                     textDecoration: "none",
                     "&:hover": {
-                      color: "primary.main",
+                      color: "secondary.main",
                     },
                   },
 
                   svg: {
                     mr: 2,
+                    color: "secondary.main",
                   },
                 }}
               >
@@ -194,14 +198,14 @@ const Footer = () => {
                 ) : item.type.includes("phone") ? (
                   <a href={`tel:${item.text}`}>{item.text}</a>
                 ) : (
-                  <Typography>{item.text}</Typography>
+                  <Typography sx={{ color: "white" }}>{item.text}</Typography>
                 )}
               </Stack>
             ))}
           </Grid>
         </Grid>
         <Divider sx={{ border: "1px solid rgba(255,255,255,.07)", my: 3 }} />
-        <Typography paragraph textAlign="center">
+        <Typography paragraph textAlign="center" sx={{ color: "white" }}>
           Copyright © {new Date().getFullYear()} Home Safety Certificate. All
           rights reserved.
         </Typography>

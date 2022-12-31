@@ -49,19 +49,31 @@ export const theme = createTheme({
       light: "#ffa726",
       main: "#004975",
       dark: "#ef6c00",
-      contrastText: "white",
+      contrastText: "rgba(255,255,255, 1)",
     },
     secondary: {
       light: "#ffa726",
       main: "#F7C355",
       dark: "#ef6c00",
-      contrastText: "rgba(0, 0, 0, 0.87)",
+      // contrastText: "rgba(0, 0, 0, 0.87)",
+      contrastText: "rgba(255,255,255, 1)",
     },
+    black: {
+      light: "#ffa726",
+      main: "#222222",
+      dark: "#ef6c00",
+      // contrastText: "rgba(0, 0, 0, 0.87)",
+      contrastText: "rgba(255,255,255, 1)",
+    },
+
     border: {
-      main: "#ECECEE",
+      main: "#F1F1F1",
     },
     text: {
       main: "#888888",
+    },
+    background: {
+      main: "#F7F7F7",
     },
 
     contrastThreshold: 3,
@@ -98,13 +110,47 @@ export const theme = createTheme({
           props: { variant: "blue" },
           style: sx({
             borderRadius: 20,
-            py: 1.5,
+            py: 1.3,
             px: 3,
             fontSize: 13,
             bgcolor: "primary.main",
             fontWeight: 600,
+            color: "white",
             "&:hover": {
               bgcolor: "secondary.main",
+            },
+          }),
+        },
+        {
+          props: { variant: "yellow" },
+          style: sx({
+            borderRadius: 20,
+            py: 1.3,
+            px: 3,
+            fontSize: 13,
+            bgcolor: "secondary.main",
+            fontWeight: 600,
+            color: "white",
+            "&:hover": {
+              bgcolor: "primary.main",
+            },
+          }),
+        },
+        {
+          props: { variant: "blue-outlined" },
+          style: sx({
+            borderRadius: 20,
+            py: 1.3,
+            px: 3,
+            fontSize: 13,
+            bgcolor: "white",
+            fontWeight: 600,
+            color: "primary.main",
+            border: "1px solid",
+            borderColor: "primary.main",
+            "&:hover": {
+              color: "white",
+              bgcolor: "primary.main",
             },
           }),
         },
@@ -137,24 +183,24 @@ export const theme = createTheme({
         },
       ],
     },
-    MuiInputBase: {
-      styleOverrides: {
-        // Name of the slot
-        root: sx({
-          borderRadius: "0!important",
-          "&:hover": {
-            borderColor: "primary.main",
-          },
-        }),
-        input: sx({
-          padding: "9.8px 14px!important",
+    // MuiInputBase: {
+    //   styleOverrides: {
+    //     // Name of the slot
+    //     root: sx({
+    //       borderRadius: "0!important",
+    //       "&:hover": {
+    //         borderColor: "primary.main",
+    //       },
+    //     }),
+    //     input: sx({
+    //       padding: "9.8px 14px!important",
 
-          "&:hover": {
-            boxShadow: "none",
-          },
-        }),
-      },
-    },
+    //       "&:hover": {
+    //         boxShadow: "none",
+    //       },
+    //     }),
+    //   },
+    // },
   },
 });
 

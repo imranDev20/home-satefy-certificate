@@ -1,48 +1,54 @@
-// import { Container, Grid, Typography } from "@mui/material";
 import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
+import { Box, Button, Container, Grid, Link, Typography } from "@mui/material";
+import Heading from "../global/heading";
+import Paragraph from "../global/paragraph";
+import { Pagination, Scrollbar, A11y, Autoplay } from "swiper";
+import styled from "@emotion/styled";
+import { Link as GatsbyLink } from "gatsby";
 
 // Import Swiper styles
 import "swiper/css";
-import { GatsbyImage } from "gatsby-plugin-image";
-import { Box } from "@mui/material";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
-// import FlameIcon from "../../images/icons/flame-colored.svg";
-// import LightBulbIcon from "../../images/icons/lightbulb.svg";
-// import EpcIcon from "../../images/icons/energy-performance.svg";
-// import PassedIcon from "../../images/icons/passed.svg";
-// import FireExitIcon from "../../images/icons/fire-exit-colored.svg";
-// import FireAlarmIcon from "../../images/icons/fire-alarm-colored.svg";
-// import HouseIcon from "../../images/icons/house-colored.svg";
-// import RiskListIcon from "../../images/icons/fire-risk-list-colored.svg";
-
-// const services = [
-//   { id: 1, name: "Gas Certificate", icon: FlameIcon },
-//   { id: 2, name: "Electric Certificate", icon: LightBulbIcon },
-//   { id: 3, name: "EPC", icon: EpcIcon },
-//   { id: 4, name: "PAT", icon: PassedIcon },
-//   { id: 5, name: "Emergency Light Testing", icon: FireExitIcon },
-//   { id: 6, name: "Fire Alarm Testing", icon: FireAlarmIcon },
-//   { id: 7, name: "Risk Assessment", icon: RiskListIcon },
-//   { id: 8, name: "HMO", icon: HouseIcon },
-// ];
+const StyledSwiper = styled(Swiper)(({ theme }) => ({
+  ".swiper-pagination-bullet": {
+    width: 25,
+    height: 7,
+    borderRadius: 2,
+    marginLeft: "10px!important",
+    marginRight: "10px!important",
+    transition: "0.5s ease all",
+  },
+  ".swiper-pagination-bullet-active": {
+    width: 7,
+    borderRadius: 50,
+    background: theme.palette.primary.main,
+  },
+}));
 
 const Services = () => {
   const data = useStaticQuery(graphql`
     query HomeServices {
-      allFile(filter: { sourceInstanceName: { eq: "services" } }) {
+      allFile(
+        filter: { sourceInstanceName: { eq: "services" } }
+        sort: { childMdx: { frontmatter: { id: ASC } } }
+      ) {
         nodes {
           childMdx {
             frontmatter {
+              id
               title
-              description
               image {
                 childImageSharp {
                   gatsbyImageData(
                     transformOptions: { cropFocus: CENTER, fit: COVER }
                     width: 300
+                    height: 360
                   )
                 }
               }
@@ -56,62 +62,145 @@ const Services = () => {
   const servicesData = data.allFile.nodes;
 
   return (
-    <Swiper
-      spaceBetween={7}
-      slidesPerView={5}
-      onSlideChange={() => console.log("slide change")}
-      onSwiper={(swiper) => console.log(swiper)}
-    >
-      {servicesData.map((item) => (
-        <SwiperSlide>
-          <Box>
-            <GatsbyImage
-              image={
-                item.childMdx.frontmatter.image.childImageSharp.gatsbyImageData
-              }
-            />
-          </Box>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <>
+      <StyledSwiper
+        style={{ paddingBottom: 50 }}
+        modules={[Pagination, Scrollbar, A11y, Autoplay]}
+        spaceBetween={3}
+        // autoplay={{
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // }}
+        autoplay
+        pagination={{ clickable: true }}
+        slidesPerView={5}
+        // onSlideChange={() => console.log("slide change")}
+        // onSwiper={(swiper) => console.log(swiper)}
+        breakpoints={{
+          // when window width is >= 640px
+          0: {
+            slidesPerView: 1,
+          },
+          576: {
+            slidesPerView: 2,
+          },
+          // when window width is >= 768px
+          992: {
+            slidesPerView: 3,
+          },
+          1168: {
+            slidesPerView: 5,
+          },
+        }}
+      >
+        {servicesData.map((item) => {
+          const slug = item.childMdx.frontmatter.title
+            .toLowerCase()
+            .replace(/ /g, "-")
+            .replace(/[^\w-]+/g, "");
+
+          return (
+            <SwiperSlide key={item.childMdx.frontmatter.id}>
+              <Box
+                sx={{
+                  position: "relative",
+                  "&::before": {
+                    content: "''",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    zIndex: 1,
+                    transition: "0.3s ease all",
+                  },
+
+                  "&:hover": {
+                    ".MuiBox-root ": {
+                      top: "50%",
+                      opacity: 1,
+                    },
+                    ".service-image": {
+                      transform: "rotate(1deg) scale(1.05)",
+                    },
+                    "&::before": {
+                      backgroundColor: "rgba(0,44,91,.8)",
+                    },
+                  },
+                }}
+              >
+                <GatsbyImage
+                  style={{ width: "100%" }}
+                  imgStyle={{ transition: "0.3s ease all" }}
+                  imgClassName="service-image"
+                  alt={item.childMdx.frontmatter.title}
+                  image={
+                    item.childMdx.frontmatter.image.childImageSharp
+                      .gatsbyImageData
+                  }
+                />
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "absolute",
+                    top: "30%",
+                    left: "50%",
+                    opacity: 0,
+                    transform: "translate(-50%, -50%)",
+                    color: "white",
+                    zIndex: 2,
+                    transition: "0.3s ease all",
+                  }}
+                >
+                  <Link
+                    component={GatsbyLink}
+                    to={`/services/${slug}`}
+                    sx={{
+                      mb: 2,
+                      fontSize: 26,
+                      color: "white",
+                      textDecoration: "none",
+                      textAlign: "center",
+                      fontWeight: 500,
+                      transition: "0.3s color ease",
+                      "&:hover": {
+                        color: "secondary.main",
+                      },
+                    }}
+                  >
+                    {item.childMdx.frontmatter.title}
+                  </Link>
+                  <Button variant="yellow" sx={{ py: 0.8 }}>
+                    Read More
+                  </Button>
+                </Box>
+              </Box>
+            </SwiperSlide>
+          );
+        })}
+      </StyledSwiper>
+      <Container sx={{ my: 5 }}>
+        <Grid container spacing={5}>
+          <Grid item sm={6}>
+            <Heading>
+              Protect, Cleaning & Look After Your Biggest Household Investments
+            </Heading>
+          </Grid>
+          <Grid item sm={6}>
+            <Paragraph>
+              Mr.Handy is a fantastic addition to your property providing
+              additional living space & room to relax and look out upon your
+              garden. A clean conservatory looks great & is something to feel
+              proud of.
+            </Paragraph>
+          </Grid>
+        </Grid>
+      </Container>
+    </>
   );
 };
 
 export default Services;
-
-{
-  /* <Container maxWidth="lg" sx={{ mb: 10 }}>
-  <Typography
-    component="h2"
-    variant="h4"
-    color="secondary"
-    sx={{ textAlign: "center", fontWeight: 700 }}
-  >
-    Our Services
-  </Typography>
-  <Grid container spacing={7} mt={1}>
-    {services.map((item) => (
-      <Grid
-        item
-        sm={3}
-        key={item.id}
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <img style={{ width: 100 }} src={item.icon} alt="" />
-        <Typography
-          component="h4"
-          variant="h6"
-          color="secondary"
-          sx={{ textAlign: "center", mt: 2 }}
-        >
-          {item.name}
-        </Typography>
-      </Grid>
-    ))}
-  </Grid>
-</Container>; */
-}
