@@ -48,7 +48,7 @@ const Services = () => {
                   gatsbyImageData(
                     transformOptions: { cropFocus: CENTER, fit: COVER }
                     width: 300
-                    height: 360
+                    height: 450
                   )
                 }
               }
@@ -67,11 +67,11 @@ const Services = () => {
         style={{ paddingBottom: 50 }}
         modules={[Pagination, Scrollbar, A11y, Autoplay]}
         spaceBetween={3}
-        // autoplay={{
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // }}
-        autoplay
+        autoplay={{
+          disableOnInteraction: false,
+          pauseOnMouseEnter: false,
+        }}
+        // autoplay
         pagination={{ clickable: true }}
         slidesPerView={5}
         // onSlideChange={() => console.log("slide change")}
@@ -112,7 +112,7 @@ const Services = () => {
                     width: "100%",
                     height: "100%",
                     zIndex: 1,
-                    transition: "0.3s ease all",
+                    transition: "0.5s ease all",
                   },
 
                   "&:hover": {
@@ -160,7 +160,7 @@ const Services = () => {
                     to={`/services/${slug}`}
                     sx={{
                       mb: 2,
-                      fontSize: 26,
+                      fontSize: 30,
                       color: "white",
                       textDecoration: "none",
                       textAlign: "center",

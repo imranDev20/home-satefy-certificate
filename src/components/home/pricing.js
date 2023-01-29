@@ -20,7 +20,7 @@ import { Masonry } from "@mui/lab";
 import { CgArrowLongRight } from "react-icons/cg";
 import Background from "../../images/background.svg";
 
-const Pricing = () => {
+const Pricing = ({ isPage }) => {
   const data = useStaticQuery(graphql`
     query PricingQuery {
       allFile(
@@ -59,14 +59,14 @@ const Pricing = () => {
       sx={{
         bgcolor: "background.main",
         py: 10,
-        my: 10,
+        mt: isPage ? 0 : 10,
         backgroundImage: `url(${Background})`,
       }}
     >
       <Container>
         <Heading sx={{ textAlign: "center", mb: 5 }}>Our Pricing Plans</Heading>
         <Masonry spacing={5} columns={3}>
-          {priceData.slice(0, priceData.length - 1).map((item) => (
+          {priceData.map((item) => (
             <Card
               elevation={0}
               key={item.childMdx.frontmatter.id}

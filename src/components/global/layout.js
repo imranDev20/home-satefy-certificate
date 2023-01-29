@@ -183,24 +183,24 @@ export const theme = createTheme({
         },
       ],
     },
-    // MuiInputBase: {
-    //   styleOverrides: {
-    //     // Name of the slot
-    //     root: sx({
-    //       borderRadius: "0!important",
-    //       "&:hover": {
-    //         borderColor: "primary.main",
-    //       },
-    //     }),
-    //     input: sx({
-    //       padding: "9.8px 14px!important",
+    MuiInputBase: {
+      styleOverrides: {
+        // Name of the slot
+        root: sx({
+          backgroundColor: "white",
+          "&:hover": {
+            borderColor: "primary.main",
+          },
+        }),
+        input: sx({
+          // padding: "9.8px 14px!important",
 
-    //       "&:hover": {
-    //         boxShadow: "none",
-    //       },
-    //     }),
-    //   },
-    // },
+          "&:hover": {
+            boxShadow: "none",
+          },
+        }),
+      },
+    },
   },
 });
 

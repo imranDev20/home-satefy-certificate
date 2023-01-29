@@ -1,7 +1,6 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
@@ -10,17 +9,10 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 import Layout from "../components/global/layout";
 import { IconButton, InputAdornment } from "@mui/material";
-import {
-  AccountCircle,
-  Key,
-  Person,
-  Visibility,
-  VisibilityOff,
-} from "@mui/icons-material";
+import { Key, Person, Visibility, VisibilityOff } from "@mui/icons-material";
 
 function Copyright(props) {
   return (
@@ -39,8 +31,6 @@ function Copyright(props) {
     </Typography>
   );
 }
-
-const theme = createTheme();
 
 export default function SignIn() {
   const handleSubmit = (event) => {
@@ -106,8 +96,8 @@ export default function SignIn() {
             InputProps={{
               sx: {
                 fontFamily: !showPassword ? "caption!important" : "Jost",
-                fontSize: !showPassword ? 24 : 16,
-                letterSpacing: !showPassword ? 5 : 2,
+                fontSize: !showPassword ? 18 : 16,
+                letterSpacing: !showPassword ? 3 : 1,
                 height: 56,
               },
               startAdornment: (
@@ -118,7 +108,6 @@ export default function SignIn() {
               endAdornment: (
                 <InputAdornment position="end">
                   <IconButton
-                    aria-label="toggle password visibility"
                     onClick={handleClickShowPassword}
                     onMouseDown={handleMouseDownPassword}
                     edge="end"

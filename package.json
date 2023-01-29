@@ -36,9 +36,13 @@
     "gatsby-remark-images": "^7.2.0",
     "gatsby-source-filesystem": "^5.2.0",
     "gatsby-transformer-sharp": "^5.2.0",
+    "gbimage-bridge": "^0.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.41.3",
     "react-icons": "^4.7.1",
+    "react-swipeable-views": "^0.14.0",
+    "react-swipeable-views-utils": "^0.14.0",
     "swiper": "^8.4.5"
   }
 }

@@ -17,7 +17,7 @@ const features = [
 
 const About = () => {
   return (
-    <Container sx={{ my: 20 }}>
+    <Container sx={{ my: 15 }}>
       <Grid container>
         <Grid item sm={6}></Grid>
         <Grid item sm={6}>
