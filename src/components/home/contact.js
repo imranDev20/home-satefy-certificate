@@ -27,6 +27,7 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import "swiper/css";
 import BackgroundImage from "gatsby-background-image";
+import Form from "../global/form";
 
 const Contact = ({ isPage }) => {
   const background = useStaticQuery(graphql`
@@ -138,97 +139,8 @@ const Contact = ({ isPage }) => {
                   Like what you’ve seen so far? What you’ve seen on our website
                   is only the tip! To know more kindly drop us request.
                 </Typography>
-                <Grid container spacing={2}>
-                  <Grid item md={6} xs={12}>
-                    <TextField
-                      fullWidth
-                      placeholder="Your Name"
-                      variant="outlined"
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="start">
-                            <BsPerson />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Grid>
-                  <Grid item md={6} xs={12}>
-                    <TextField
-                      fullWidth
-                      placeholder="Your Number"
-                      variant="outlined"
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="start">
-                            <BsPhone />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Grid>
-                  <Grid item md={6} xs={12}>
-                    <TextField
-                      fullWidth
-                      placeholder="Your Email"
-                      variant="outlined"
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="start">
-                            <BsEnvelope />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Grid>
-                  <Grid item md={6} xs={12}>
-                    <TextField
-                      fullWidth
-                      placeholder="Enter Zip Code"
-                      variant="outlined"
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="start">
-                            <BsSignpostSplit />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Grid>
 
-                  <Grid item xs={12}>
-                    <TextField
-                      placeholder="Message..."
-                      variant="outlined"
-                      fullWidth
-                      multiline
-                      sx={{
-                        ".MuiInputBase-root": {
-                          display: "flex",
-                          alignItems: "start",
-                        },
-                      }}
-                      minRows={5}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="start" sx={{ mt: 1.8 }}>
-                            <BsChatSquareQuote />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                  </Grid>
-                  <Grid item md={6} xs={12}>
-                    <Button
-                      fullWidth
-                      variant="blue"
-                      color="primary"
-                      endIcon={<ArrowCircleRightRoundedIcon />}
-                    >
-                      Submit Request
-                    </Button>
-                  </Grid>
-                </Grid>
+                <Form />
               </Box>
             </Box>
           </BackgroundImage>
