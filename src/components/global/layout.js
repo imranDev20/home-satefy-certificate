@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  ThemeProvider,
-  createTheme,
-  experimental_sx as sx,
-} from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { CssBaseline } from "@mui/material";
 import Footer from "./footer";
@@ -84,121 +80,128 @@ export const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         // Name of the slot
-        root: sx({
-          boxShadow: "none",
-          "&:hover": {
+        root: ({ theme }) =>
+          theme.unstable_sx({
             boxShadow: "none",
-          },
-        }),
+            "&:hover": {
+              boxShadow: "none",
+            },
+          }),
       },
       variants: [
         {
           props: { variant: "white" },
-          style: sx({
-            borderRadius: 0,
-            bgcolor: "white",
-            color: "primary.main",
-            "&:hover": {
-              bgcolor: "primary.main",
-              color: "white",
-            },
-            px: 3,
-            py: 1,
-          }),
+          style: ({ theme }) =>
+            theme.unstable_sx({
+              borderRadius: 0,
+              bgcolor: "white",
+              color: "primary.main",
+              "&:hover": {
+                bgcolor: "primary.main",
+                color: "white",
+              },
+              px: 3,
+              py: 1,
+            }),
         },
         {
           props: { variant: "blue" },
-          style: sx({
-            borderRadius: 20,
-            py: 1.3,
-            px: 3,
-            fontSize: 13,
-            bgcolor: "primary.main",
-            fontWeight: 600,
-            color: "white",
-            "&:hover": {
-              bgcolor: "secondary.main",
-            },
-          }),
+          style: ({ theme }) =>
+            theme.unstable_sx({
+              borderRadius: 20,
+              py: 1.3,
+              px: 3,
+              fontSize: 13,
+              bgcolor: "primary.main",
+              fontWeight: 600,
+              color: "white",
+              "&:hover": {
+                bgcolor: "secondary.main",
+              },
+            }),
         },
         {
           props: { variant: "yellow" },
-          style: sx({
-            borderRadius: 20,
-            py: 1.3,
-            px: 3,
-            fontSize: 13,
-            bgcolor: "secondary.main",
-            fontWeight: 600,
-            color: "white",
-            "&:hover": {
-              bgcolor: "primary.main",
-            },
-          }),
+          style: ({ theme }) =>
+            theme.unstable_sx({
+              borderRadius: 20,
+              py: 1.3,
+              px: 3,
+              fontSize: 13,
+              bgcolor: "secondary.main",
+              fontWeight: 600,
+              color: "white",
+              "&:hover": {
+                bgcolor: "primary.main",
+              },
+            }),
         },
         {
           props: { variant: "blue-outlined" },
-          style: sx({
-            borderRadius: 20,
-            py: 1.3,
-            px: 3,
-            fontSize: 13,
-            bgcolor: "white",
-            fontWeight: 600,
-            color: "primary.main",
-            border: "1px solid",
-            borderColor: "primary.main",
-            "&:hover": {
-              color: "white",
-              bgcolor: "primary.main",
-            },
-          }),
+          style: ({ theme }) =>
+            theme.unstable_sx({
+              borderRadius: 20,
+              py: 1.3,
+              px: 3,
+              fontSize: 13,
+              bgcolor: "white",
+              fontWeight: 600,
+              color: "primary.main",
+              border: "1px solid",
+              borderColor: "primary.main",
+              "&:hover": {
+                color: "white",
+                bgcolor: "primary.main",
+              },
+            }),
         },
         {
           props: { variant: "orange-outlined" },
-          style: sx({
-            borderRadius: 0,
-            bgcolor: "white",
-            border: "1px solid",
-            borderColor: "primary.main",
-            color: "primary.main",
-            "&:hover": {
-              bgcolor: "primary.main",
-              color: "white",
-            },
-            px: 3,
-            py: 1,
-          }),
+          style: ({ theme }) =>
+            theme.unstable_sx({
+              borderRadius: 0,
+              bgcolor: "white",
+              border: "1px solid",
+              borderColor: "primary.main",
+              color: "primary.main",
+              "&:hover": {
+                bgcolor: "primary.main",
+                color: "white",
+              },
+              px: 3,
+              py: 1,
+            }),
         },
         {
           props: { variant: "black-text" },
-          style: sx({
-            p: 0,
-            color: "secondary.main",
-            "&:hover": {
-              backgroundColor: "transparent",
-              color: "primary.main",
-            },
-          }),
+          style: ({ theme }) =>
+            theme.unstable_sx({
+              p: 0,
+              color: "secondary.main",
+              "&:hover": {
+                backgroundColor: "transparent",
+                color: "primary.main",
+              },
+            }),
         },
       ],
     },
     MuiInputBase: {
       styleOverrides: {
         // Name of the slot
-        root: sx({
-          backgroundColor: "white",
-          "&:hover": {
-            borderColor: "primary.main",
-          },
-        }),
-        input: sx({
-          // padding: "9.8px 14px!important",
-
-          "&:hover": {
-            boxShadow: "none",
-          },
-        }),
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            backgroundColor: "white",
+            "&:hover": {
+              borderColor: "primary.main",
+            },
+          }),
+        input: ({ theme }) =>
+          theme.unstable_sx({
+            "&:hover": {
+              boxShadow: "none",
+            },
+          }),
       },
     },
   },

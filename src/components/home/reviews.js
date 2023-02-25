@@ -69,7 +69,7 @@ const Reviews = () => {
         enableMouseEvents
       >
         {images.map((step, index) => (
-          <Box key={step.label}>
+          <Box key={index}>
             {Math.abs(activeStep - index) <= 2 ? (
               <>
                 <Stack

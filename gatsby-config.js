@@ -9,20 +9,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
-    {
-      gatsbyRemarkPlugins: [
-        {
-          options: {
-            maxWidth: 1920,
-          },
-          resolve: "gatsby-remark-images",
-        },
-      ],
-      options: {
-        extensions: [".mdx", ".md", ".markdown"],
-      },
-      resolve: "gatsby-plugin-mdx",
-    },
+    "gatsby-plugin-slug",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -30,6 +17,7 @@ module.exports = {
       },
     },
     {
+      resolve: "gatsby-plugin-sharp",
       options: {
         defaults: {
           formats: ["auto", "avif", "webp"],
@@ -37,10 +25,15 @@ module.exports = {
           quality: 70,
         },
       },
-      resolve: "gatsby-plugin-sharp",
     },
     "gatsby-transformer-sharp",
-    "gatsby-plugin-loadable-components-ssr",
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        path: `${__dirname}/static/img`,
+        name: "uploads",
+      },
+    },
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -79,12 +72,25 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-background-image",
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        // add your own characters to escape, replacing the default ':/'
-        specialChars: "/:",
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 1280,
+            },
+          },
+          {
+            resolve: `gatsby-remark-relative-images`,
+            options: {
+              staticFolderName: "static",
+            },
+          },
+        ],
       },
     },
+
     {
       resolve: "@slixites/gatsby-plugin-google-fonts",
       options: {

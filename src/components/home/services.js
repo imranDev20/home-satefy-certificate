@@ -40,6 +40,9 @@ const Services = () => {
       ) {
         nodes {
           childMdx {
+            fields {
+              slug
+            }
             frontmatter {
               id
               title
@@ -74,17 +77,13 @@ const Services = () => {
         // autoplay
         pagination={{ clickable: true }}
         slidesPerView={5}
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
-          // when window width is >= 640px
           0: {
             slidesPerView: 1,
           },
           576: {
             slidesPerView: 2,
           },
-          // when window width is >= 768px
           992: {
             slidesPerView: 3,
           },
@@ -94,13 +93,11 @@ const Services = () => {
         }}
       >
         {servicesData.map((item) => {
-          const slug = item.childMdx.frontmatter.title
-            .toLowerCase()
-            .replace(/ /g, "-")
-            .replace(/[^\w-]+/g, "");
+          const slug = item.childMdx.fields.slug;
+          const { title, id, image } = item.childMdx.frontmatter;
 
           return (
-            <SwiperSlide key={item.childMdx.frontmatter.id}>
+            <SwiperSlide key={id}>
               <Box
                 sx={{
                   position: "relative",
@@ -133,11 +130,8 @@ const Services = () => {
                   style={{ width: "100%" }}
                   imgStyle={{ transition: "0.3s ease all" }}
                   imgClassName="service-image"
-                  alt={item.childMdx.frontmatter.title}
-                  image={
-                    item.childMdx.frontmatter.image.childImageSharp
-                      .gatsbyImageData
-                  }
+                  alt={title}
+                  image={image.childImageSharp.gatsbyImageData}
                 />
                 <Box
                   sx={{
@@ -157,7 +151,7 @@ const Services = () => {
                 >
                   <Link
                     component={GatsbyLink}
-                    to={`/services/${slug}`}
+                    to={`/services${slug}`}
                     sx={{
                       mb: 2,
                       fontSize: 30,
@@ -171,7 +165,7 @@ const Services = () => {
                       },
                     }}
                   >
-                    {item.childMdx.frontmatter.title}
+                    {title}
                   </Link>
                   <Button variant="yellow" sx={{ py: 0.8 }}>
                     Read More

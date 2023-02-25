@@ -1,6 +1,9 @@
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import BulbIcon from "../../images/icons/lightbulb.svg";
+import BookingIcon from "../../images/steps/booking.svg";
+import CalendarIcon from "../../images/steps/calendar.svg";
+import CertificateIcon from "../../images/steps/certificate.svg";
+import DoorIcon from "../../images/steps/door.svg";
 import Heading from "../global/heading";
 import Paragraph from "../global/paragraph";
 
@@ -11,26 +14,26 @@ const Process = () => {
       title: "Book your service",
       subtitle:
         "We provide all domestic landlord certificate services. You will need to select your preferred service/s.",
-      icon: BulbIcon,
+      icon: BookingIcon,
     },
     {
       id: 2,
       title: "Confirm the Inspection date",
       subtitle: "Find your preferred slot for the appointment.",
-      icon: BulbIcon,
+      icon: CalendarIcon,
     },
     {
       id: 3,
       title: "Open the door",
       subtitle:
         "Qualified, registered & vetted professional will visit your property for inspection.",
-      icon: BulbIcon,
+      icon: DoorIcon,
     },
     {
       id: 4,
       title: "Receive your Certificate",
       subtitle: "Once the inspection completed, certificate will email to you.",
-      icon: BulbIcon,
+      icon: CertificateIcon,
     },
   ];
   return (
@@ -71,7 +74,7 @@ const Process = () => {
                 }}
               >
                 <img
-                  style={{ width: "70px", height: "70px" }}
+                  style={{ width: "50px", height: "50px" }}
                   src={process.icon}
                   alt={process.title}
                 />

@@ -3,7 +3,7 @@ import BackgroundImage from "gatsby-background-image";
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
 
-const PageHeader = ({ title, bgImage }) => {
+const PageHeader = ({ title, bgImage, secondary }) => {
   return (
     <Box component="section">
       <BackgroundImage style={{}} Tag="section" {...bgImage}>
@@ -56,6 +56,17 @@ const PageHeader = ({ title, bgImage }) => {
               >
                 Home
               </Link>
+
+              {secondary ? (
+                <Link
+                  to={`/${secondary.toLowerCase()}`}
+                  component={GatsbyLink}
+                  underline="hover"
+                  color="inherit"
+                >
+                  {secondary}
+                </Link>
+              ) : null}
 
               <Typography sx={{ color: "secondary.main" }}>{title}</Typography>
             </Breadcrumbs>

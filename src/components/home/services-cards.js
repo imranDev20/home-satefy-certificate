@@ -9,6 +9,18 @@ import { graphql, useStaticQuery } from "gatsby";
 
 import Heading from "../global/heading";
 import ServicesCard from "./services-card";
+import styled from "@emotion/styled";
+
+const StyledSwiper = styled(Swiper)(({ theme }) => ({
+  paddingTop: 20,
+  paddingBottom: 10,
+  paddingLeft: 10,
+  paddingRight: 10,
+  "& .swiper-wrapper": {
+    px: "10px",
+    py: "10px",
+  },
+}));
 
 function ServicesCards() {
   const data = useStaticQuery(graphql`
@@ -45,13 +57,7 @@ function ServicesCards() {
       >
         Get Amazing Cleaning By Mr. Handy Just By Following Simple Steps
       </Heading>
-      <Swiper
-        style={{
-          paddingTop: 20,
-          paddingBottom: 10,
-          paddingLeft: 10,
-          paddingRight: 10,
-        }}
+      <StyledSwiper
         spaceBetween={30}
         slidesPerView={3}
         onSlideChange={() => console.log("slide change")}
@@ -64,7 +70,7 @@ function ServicesCards() {
             </SwiperSlide>
           );
         })}
-      </Swiper>
+      </StyledSwiper>
     </Container>
   );
 }

@@ -57,11 +57,8 @@ const ServicesPage = () => {
         <Grid container spacing={3}>
           {services.map((service) => {
             return (
-              <Grid item md={4}>
-                <ServicesCard
-                  key={service.childMdx.frontmatter.id}
-                  service={service}
-                />
+              <Grid item md={4} key={service.childMdx.frontmatter.id}>
+                <ServicesCard service={service} />
               </Grid>
             );
           })}
