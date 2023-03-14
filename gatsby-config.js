@@ -2,6 +2,7 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  trailingSlash: `never`,
   siteMetadata: {
     title: `Home Safety Certificate`,
     siteUrl: `https://homesafetycert.co.uk`,
@@ -81,12 +82,12 @@ module.exports = {
               maxWidth: 1280,
             },
           },
-          {
-            resolve: `gatsby-remark-relative-images`,
-            options: {
-              staticFolderName: "static",
-            },
-          },
+          // {
+          //   resolve: `gatsby-remark-relative-images`,
+          //   options: {
+          //     staticFolderName: "static",
+          //   },
+          // },
         ],
       },
     },

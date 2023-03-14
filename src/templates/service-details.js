@@ -6,7 +6,6 @@ import Layout from "../components/global/layout";
 import { Button, Container, Grid, Stack } from "@mui/material";
 import PageHeader from "../components/global/page-header";
 import { convertToBgImage } from "gbimage-bridge";
-import { GatsbyImage, StaticImage } from "gatsby-plugin-image";
 
 const shortcodes = { Link, Grid };
 

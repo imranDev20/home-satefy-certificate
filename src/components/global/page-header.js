@@ -1,9 +1,10 @@
-import { Box, Breadcrumbs, Link, Typography } from "@mui/material";
+import { Box, Breadcrumbs, Link, Typography, useTheme } from "@mui/material";
 import BackgroundImage from "gatsby-background-image";
 import React from "react";
 import { Link as GatsbyLink } from "gatsby";
 
 const PageHeader = ({ title, bgImage, secondary }) => {
+  const theme = useTheme();
   return (
     <Box component="section">
       <BackgroundImage style={{}} Tag="section" {...bgImage}>
@@ -20,8 +21,8 @@ const PageHeader = ({ title, bgImage, secondary }) => {
               height: "100%",
               top: 0,
               left: 0,
-              backgroundColor: "#2b2b2b",
-              opacity: 0.9,
+              backgroundColor: "primary.main",
+              opacity: 0.8,
             },
           }}
         >

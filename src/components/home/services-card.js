@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Card, Typography } from "@mui/material";
 import { theme } from "../global/layout";
 import { CgArrowLongRight } from "react-icons/cg";
+import { Link as GatsbyLink } from "gatsby";
 
 function ServicesCard({ service }) {
   const [expand, setExpand] = useState(false);
@@ -77,7 +78,13 @@ function ServicesCard({ service }) {
       >
         {description}
       </Typography>
-      <Button variant="blue" endIcon={<CgArrowLongRight />} sx={{ py: 1 }}>
+      <Button
+        LinkComponent={GatsbyLink}
+        variant="blue"
+        endIcon={<CgArrowLongRight />}
+        sx={{ py: 1 }}
+        to={`/quote?service=gas`}
+      >
         Book Now
       </Button>
     </Card>

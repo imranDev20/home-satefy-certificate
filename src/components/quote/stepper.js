@@ -5,24 +5,16 @@ import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import {
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  Stack,
-  StepLabel,
-  TextField,
-} from "@mui/material";
-import SelectServicesDropdown from "./select-services-dropdown";
 import dayjs from "dayjs";
-import { DesktopDatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import BasicInfo from "./basic-info";
 import ServiceInfo from "./service-info";
 import CompleteRequest from "./complete-request";
 
-const steps = ["Basic Information", "Service Information", "Complete Request"];
+const steps = [
+  "Service Information",
+  "Personal Information",
+  "Complete Request",
+];
 
 export default function HorizontalNonLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -74,18 +66,6 @@ export default function HorizontalNonLinearStepper() {
     setCompleted({});
   };
 
-  const [age, setAge] = React.useState("");
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
-  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
-
-  const handleDateChange = (newValue) => {
-    setValue(newValue);
-  };
-
   return (
     <Box sx={{ width: "100%" }}>
       <Stepper nonLinear activeStep={activeStep}>
@@ -124,7 +104,7 @@ export default function HorizontalNonLinearStepper() {
             </Typography> */}
 
             {activeStep === 0 ? (
-              <BasicInfo
+              <ServiceInfo
                 activeStep={activeStep}
                 handleNext={handleNext}
                 handleBack={handleBack}
@@ -132,7 +112,7 @@ export default function HorizontalNonLinearStepper() {
             ) : null}
 
             {activeStep === 1 ? (
-              <ServiceInfo
+              <BasicInfo
                 activeStep={activeStep}
                 handleNext={handleNext}
                 handleBack={handleBack}
