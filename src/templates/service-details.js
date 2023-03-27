@@ -7,15 +7,15 @@ import { Button, Container, Grid, Stack } from "@mui/material";
 import PageHeader from "../components/global/page-header";
 import { convertToBgImage } from "gbimage-bridge";
 
-const shortcodes = { Link, Grid };
+// const shortcodes = { Link, Grid };
 
-export default function ServiceDetails({ data, children }) {
+export default function ServiceDetails({ data, children, location }) {
   const { title, image } = data.mdx.frontmatter;
   const background = image.childImageSharp.gatsbyImageData;
   const bgImage = convertToBgImage(background);
 
   return (
-    <Layout>
+    <Layout location={location}>
       <PageHeader title={title} bgImage={bgImage} secondary="Services" />
       <Container>
         <Grid container spacing={4} my={3}>

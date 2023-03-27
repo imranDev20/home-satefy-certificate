@@ -1,12 +1,13 @@
 import React from "react";
 // Import Swiper React components
 import { Navigation, Pagination, Autoplay, EffectFade } from "swiper";
-import { Box, Typography, Button, Container } from "@mui/material";
+import { Box, Typography, Button, Container, Grid } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { graphql, useStaticQuery } from "gatsby";
 import styled from "@emotion/styled";
 import { convertToBgImage } from "gbimage-bridge";
 import BackgroundImage from "gatsby-background-image";
+import { CgArrowLongRight } from "react-icons/cg";
 
 // Import Swiper styles
 import "swiper/css";
@@ -15,9 +16,10 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
 import "../../styles/swiper-custom.css";
+import HeroInfos from "./hero-infos";
 
 const CustomSwiper = styled(Swiper)(() => ({
-  height: "95vh",
+  height: "calc(100vh - 108px)",
   maxHeight: 650,
 }));
 
@@ -44,11 +46,15 @@ const Hero = () => {
     }
   `);
 
-  console.log(data);
   const slides = data?.allFile?.nodes;
 
   return (
-    <Box component="section">
+    <Box
+      component="section"
+      sx={{
+        position: "relative",
+      }}
+    >
       <CustomSwiper
         spaceBetween={50}
         effect="fade"
@@ -62,7 +68,6 @@ const Hero = () => {
             slide.childMdx.frontmatter.image.childImageSharp.gatsbyImageData;
 
           const bgImage = convertToBgImage(slideImage);
-
           const id = slide.childMdx.frontmatter.id;
 
           return (
@@ -79,8 +84,8 @@ const Hero = () => {
                       height: "100%",
                       top: 0,
                       left: 0,
-                      backgroundColor: "black",
-                      opacity: 0.7,
+                      background:
+                        "linear-gradient(to right, rgba(255, 255, 255, 1) 0, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.7) 45%, rgba(255, 255, 255, 0) 55%)",
                     },
                   }}
                 >
@@ -95,14 +100,23 @@ const Hero = () => {
                       }}
                     >
                       <Typography
+                        component="h4"
+                        fontWeight={400}
+                        sx={{
+                          color: "black.main",
+                        }}
+                        my={1}
+                      >
+                        {slide.childMdx.frontmatter.subtitle}
+                      </Typography>
+                      <Typography
                         component="h2"
                         variant="h2"
-                        color="white"
                         fontWeight={600}
                         sx={{
-                          fontSize: { xs: 32, sm: 40, md: 60 },
+                          fontSize: { xs: 28, sm: 35, md: 50 },
+                          color: "black.main",
                         }}
-                        textTransform="uppercase"
                         my={1}
                       >
                         {slide.childMdx.frontmatter.title}
@@ -111,7 +125,11 @@ const Hero = () => {
                         {slide.childMdx.frontmatter.description}
                       </Typography>
                       <Box>
-                        <Button variant="white" sx={{ mt: 3 }}>
+                        <Button
+                          endIcon={<CgArrowLongRight />}
+                          variant="blue"
+                          sx={{ mt: 3 }}
+                        >
                           Learn More
                         </Button>
                       </Box>
@@ -123,6 +141,7 @@ const Hero = () => {
           );
         })}
       </CustomSwiper>
+      <HeroInfos />
     </Box>
   );
 };

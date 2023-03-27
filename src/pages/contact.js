@@ -10,7 +10,7 @@ import Paragraph from "../components/global/paragraph";
 
 const ContactPage = () => {
   const data = useStaticQuery(graphql`
-    query ServicesPageQuery {
+    query ContactPageQuery {
       allFile(filter: { sourceInstanceName: { eq: "services" } }) {
         nodes {
           childMdx {

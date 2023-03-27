@@ -28,6 +28,9 @@ function ServicesCards() {
       allFile(filter: { sourceInstanceName: { eq: "services" } }) {
         nodes {
           childMdx {
+            fields {
+              slug
+            }
             frontmatter {
               title
               id
@@ -46,7 +49,7 @@ function ServicesCards() {
   const services = data?.allFile?.nodes;
 
   return (
-    <Container sx={{ my: 15 }}>
+    <Container sx={{ mt: 20, mb: 15 }}>
       <Heading
         sx={{
           mb: 5,

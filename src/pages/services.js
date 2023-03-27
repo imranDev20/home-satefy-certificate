@@ -23,6 +23,9 @@ const ServicesPage = () => {
                 publicURL
               }
             }
+            fields {
+              slug
+            }
           }
         }
       }

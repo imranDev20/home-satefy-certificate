@@ -12,9 +12,12 @@ function ServicesCard({ service }) {
     <Card
       onMouseOver={() => setExpand(true)}
       onMouseOut={() => setExpand(false)}
-      onM
+      component={GatsbyLink}
+      to={`/services${service.childMdx.fields?.slug}`}
       elevation={0}
       sx={{
+        display: "block",
+        textDecoration: "none",
         p: 4,
         boxShadow: "0 0 10px 0 rgba(0,0,0,.1)",
         transition: ".4s ease all",
@@ -83,7 +86,16 @@ function ServicesCard({ service }) {
         variant="blue"
         endIcon={<CgArrowLongRight />}
         sx={{ py: 1 }}
-        to={`/quote?service=gas`}
+        onClick={(e) => e.stopPropagation()}
+        to={
+          title.toLowerCase().includes("gas")
+            ? `/quote?service=gas`
+            : title.toLowerCase().includes("epc")
+            ? `/quote?service=epc`
+            : title.toLowerCase().includes("eicr")
+            ? `/quote?service=eicr`
+            : `/quote`
+        }
       >
         Book Now
       </Button>

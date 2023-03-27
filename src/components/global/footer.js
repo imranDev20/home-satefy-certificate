@@ -8,37 +8,17 @@ import {
   Divider,
 } from "@mui/material";
 import React from "react";
-import { navItems } from "./drawer";
+
 import { theme } from "./layout";
 import { Link as GatsbyLink } from "gatsby";
 import { HiChevronRight, HiMapPin, HiEnvelope, HiPhone } from "react-icons/hi2";
+import { contacts, navItems } from "../../utils/constant";
 
 const others = [
   "Privacy Policy",
   "Terms & Condition",
   "Acceptable Use Policy",
   "Cookie Policy",
-];
-
-const contact = [
-  {
-    id: 1,
-    type: "text",
-    text: "1058 Meadowb, Mall Road",
-    icon: HiMapPin,
-  },
-  {
-    id: 2,
-    type: "link-email",
-    text: "hello@homesafetycert.co.uk",
-    icon: HiEnvelope,
-  },
-  {
-    id: 3,
-    type: "link-phone",
-    text: "+44 7894 860827",
-    icon: HiPhone,
-  },
 ];
 
 const Footer = () => {
@@ -161,7 +141,7 @@ const Footer = () => {
             >
               Contact Us
             </Typography>
-            {contact.map((item) => (
+            {Object.values(contacts).map((item) => (
               <Stack
                 key={item.id}
                 direction="row"

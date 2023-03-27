@@ -1,6 +1,9 @@
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { convertToBgImage } from "gbimage-bridge";
-import React from "react";
+
+import About from "../components/about/about";
+import Faq from "../components/about/faq";
 import Layout from "../components/global/layout";
 import PageHeader from "../components/global/page-header";
 
@@ -22,6 +25,8 @@ const AboutPage = () => {
   return (
     <Layout>
       <PageHeader title="About" bgImage={bgImage} />
+      <About />
+      <Faq />
     </Layout>
   );
 };

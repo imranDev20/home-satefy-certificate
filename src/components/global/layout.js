@@ -207,12 +207,12 @@ export const theme = createTheme({
   },
 });
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Topbar />
-      <DrawerAppBar>{children}</DrawerAppBar>
+      <DrawerAppBar location={location}>{children}</DrawerAppBar>
       <Footer />
     </ThemeProvider>
   );

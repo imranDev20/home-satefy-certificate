@@ -27,10 +27,9 @@ import { CgArrowLongRight } from "react-icons/cg";
 import { theme } from "./layout";
 import CustomizedDialogs from "./dialog";
 import { Link as GatsbyLink } from "gatsby";
+import { navItems } from "../../utils/constant";
 
 const drawerWidth = 240;
-export const navItems = ["Home", "About", "Services", "Pricing", "Contact"];
-
 function HideOnScroll(props) {
   const { children, window } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -49,7 +48,7 @@ function HideOnScroll(props) {
 
 const DrawerAppBar = (props) => {
   const [dialogOpen, setDialogOpen] = React.useState(false);
-  const { window } = props;
+  const { window, location } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -135,9 +134,11 @@ const DrawerAppBar = (props) => {
                         : "/" + item.toLowerCase().replaceAll(" ", "-")
                     }
                     sx={{
-                      color: "primary.main",
                       fontWeight: 600,
                       mx: 1,
+                      color: location?.pathname.includes(item.toLowerCase())
+                        ? "secondary.main"
+                        : "black.main",
                       "&:hover": {
                         color: "primary.main",
                       },

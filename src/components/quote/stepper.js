@@ -10,13 +10,9 @@ import BasicInfo from "./basic-info";
 import ServiceInfo from "./service-info";
 import CompleteRequest from "./complete-request";
 
-const steps = [
-  "Service Information",
-  "Personal Information",
-  "Complete Request",
-];
+const steps = ["Basic Information", "Service Information", "Complete Request"];
 
-export default function HorizontalNonLinearStepper() {
+export default function HorizontalNonLinearStepper({ location }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState({});
 
@@ -64,6 +60,18 @@ export default function HorizontalNonLinearStepper() {
   const handleReset = () => {
     setActiveStep(0);
     setCompleted({});
+  };
+
+  const [age, setAge] = React.useState("");
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
+
+  const handleDateChange = (newValue) => {
+    setValue(newValue);
   };
 
   return (

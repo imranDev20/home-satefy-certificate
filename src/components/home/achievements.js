@@ -1,9 +1,7 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
 import Heading from "../global/heading";
 import Paragraph from "../global/paragraph";
-import { CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
 import { IntersectionObserver } from "../global/intersection-observer";
 import { ProgressCircle } from "./progress-circle";
 import WorldImage from "../../images/world.svg";

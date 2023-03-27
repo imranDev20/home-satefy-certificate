@@ -10,9 +10,9 @@ import Achievements from "../components/home/achievements";
 import Blogs from "../components/home/blogs";
 import ServicesCards from "../components/home/services-cards";
 
-const IndexPage = () => {
+const IndexPage = (props) => {
   return (
-    <Layout>
+    <Layout location={props.location}>
       <Hero />
       <ServicesCards />
       <About />
