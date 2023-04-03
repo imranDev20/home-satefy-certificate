@@ -17,7 +17,7 @@ import dayjs from "dayjs";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
-const CompleteRequest = ({ handleBack, handleNext, activeStep }) => {
+const CompleteRequest = ({ activeStep, setActiveStep }) => {
   const daysBefore = () => {
     const today = dayjs();
     return dayjs(today.set("hour", today.get("hour") + 72));
@@ -113,7 +113,9 @@ const CompleteRequest = ({ handleBack, handleNext, activeStep }) => {
           <Button
             color="inherit"
             disabled={activeStep === 0}
-            onClick={handleBack}
+            onClick={() =>
+              setActiveStep((prevActiveStep) => prevActiveStep - 1)
+            }
             sx={{ mr: 1 }}
           >
             Back

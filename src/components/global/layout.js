@@ -186,6 +186,15 @@ export const theme = createTheme({
         },
       ],
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        // Name of the slot
+        root: ({ theme }) =>
+          theme.unstable_sx({
+            fontSize: 16,
+          }),
+      },
+    },
     MuiInputBase: {
       styleOverrides: {
         // Name of the slot
