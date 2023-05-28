@@ -71,17 +71,11 @@ export default function Blogs() {
                 }}
                 elevation={0}
               >
-                {/* <CardMedia
-                  component="img"
-                  alt="green iguana"
-                  height="140"
-                  image="/static/images/cards/contemplative-reptile.jpg"
-                /> */}
                 <GatsbyImage
                   image={featuredImage.childImageSharp.gatsbyImageData}
                   alt={title}
                 />
-                <CardContent sx={{ p: 3 }}>
+                <CardContent sx={{ p: "20px" }}>
                   <Box
                     sx={{
                       display: "flex",

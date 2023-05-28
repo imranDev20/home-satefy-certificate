@@ -25,7 +25,10 @@ const StyledSwiper = styled(Swiper)(({ theme }) => ({
 function ServicesCards() {
   const data = useStaticQuery(graphql`
     query ServicesCardsQuery {
-      allFile(filter: { sourceInstanceName: { eq: "services" } }) {
+      allFile(
+        filter: { sourceInstanceName: { eq: "services" } }
+        sort: { childMdx: { frontmatter: { id: ASC } } }
+      ) {
         nodes {
           childMdx {
             fields {
@@ -58,7 +61,7 @@ function ServicesCards() {
           mx: "auto",
         }}
       >
-        Get Amazing Cleaning By Mr. Handy Just By Following Simple Steps
+        Our Comprehensive Home Safety Solutions
       </Heading>
       <StyledSwiper
         spaceBetween={30}

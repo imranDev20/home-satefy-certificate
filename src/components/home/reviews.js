@@ -60,7 +60,7 @@ const Reviews = () => {
         textAlign="center"
         sx={{ color: "white", zIndex: 10, position: "relative", mb: 4 }}
       >
-        See what our clients say about our company
+        Hear From Our Satisfied Customers
       </Typography>
       <AutoPlaySwipeableViews
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
@@ -109,7 +109,7 @@ const Reviews = () => {
                     fontWeight: 600,
                   }}
                 >
-                  John F. Kennedy{" "}
+                  Andy Moore
                   <Box
                     component="span"
                     sx={{ fontSize: 14, fontWeight: 500, color: "text.main" }}

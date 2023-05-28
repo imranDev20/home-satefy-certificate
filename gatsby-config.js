@@ -4,7 +4,7 @@
 module.exports = {
   trailingSlash: `never`,
   siteMetadata: {
-    title: `Home Safety Certificate`,
+    title: `Home Safety Cert`,
     siteUrl: `https://homesafetycert.co.uk`,
   },
   plugins: [
@@ -82,12 +82,6 @@ module.exports = {
               maxWidth: 1280,
             },
           },
-          // {
-          //   resolve: `gatsby-remark-relative-images`,
-          //   options: {
-          //     staticFolderName: "static",
-          //   },
-          // },
         ],
       },
     },
@@ -102,6 +96,16 @@ module.exports = {
           rel: "stylesheet preload prefetch",
           as: "style",
         },
+      },
+    },
+
+    {
+      resolve: `gatsby-source-stripe`,
+      options: {
+        objects: ["Sku", "Product", "Price"],
+        secretKey:
+          "sk_test_51L4d6jJZT84KLAtmy1xwgF0QUEQnvXqRPAguUi9xTLI6SxVC8X2JyoaOw34Ty3OZbyuSYeSmj995JEQnYQfPTo1l00d7ND33kh",
+        downloadFiles: true,
       },
     },
   ],

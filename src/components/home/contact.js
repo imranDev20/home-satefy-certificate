@@ -136,8 +136,10 @@ const Contact = ({ isPage }) => {
                     color: "black",
                   }}
                 >
-                  Like what you’ve seen so far? What you’ve seen on our website
-                  is only the tip! To know more kindly drop us request.
+                  Looking to get in touch? We'd love to hear from you! Contact
+                  us today and let us help you with all of your certification
+                  needs. Our expert team is ready to provide excellent service
+                  and answer any questions you may have.
                 </Typography>
 
                 <Form />

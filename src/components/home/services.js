@@ -180,15 +180,15 @@ const Services = () => {
         <Grid container spacing={5}>
           <Grid item sm={6}>
             <Heading>
-              Protect, Cleaning & Look After Your Biggest Household Investments
+              Contact Us for Professional and Reliable Certification Services in
+              London.
             </Heading>
           </Grid>
           <Grid item sm={6}>
             <Paragraph>
-              Mr.Handy is a fantastic addition to your property providing
-              additional living space & room to relax and look out upon your
-              garden. A clean conservatory looks great & is something to feel
-              proud of.
+              Secure your home's safety today. Our experienced team is dedicated
+              to providing top-quality service and ensuring your peace of mind.
+              Don't compromise on safety - choose Home Safety Cert.
             </Paragraph>
           </Grid>
         </Grid>

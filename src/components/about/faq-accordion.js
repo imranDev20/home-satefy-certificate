@@ -5,13 +5,15 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
+import { theme } from "../global/layout";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
-    borderBottom: 0,
+  borderBottom: "1px solid rgba(0, 0, 0, .125)",
+
+  "&:last-of-type": {
+    borderBottom: "none",
   },
   "&:before": {
     display: "none",
@@ -24,22 +26,25 @@ const AccordionSummary = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
   flexDirection: "row-reverse",
+  "& .MuiAccordionSummary-expandIconWrapper .MuiSvgIcon-root": {
+    color: theme.palette.primary.main,
+  },
   "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
     transform: "rotate(90deg)",
   },
   "& .MuiAccordionSummary-content": {
     marginLeft: theme.spacing(1),
+    ".MuiTypography-root": {
+      fontSize: 20,
+      fontWeight: 500,
+    },
   },
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
+  borderBottom: "1px solid rgba(0, 0, 0, .125)",
 }));
 
 export default function CustomizedAccordions({ faqs }) {
@@ -56,11 +61,24 @@ export default function CustomizedAccordions({ faqs }) {
           expanded={expanded === `panel${index + 1}`}
           onChange={handleChange(`panel${index + 1}`)}
         >
-          <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
+          <AccordionSummary
+            aria-controls="panel1d-content"
+            id="panel1d-header"
+            sx={{
+              px: 0,
+            }}
+          >
             <Typography>{faq.ques}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{faq.ans}</Typography>
+          <AccordionDetails sx={{}}>
+            <Typography
+              sx={{
+                ...theme.typography.body2,
+                fontSize: 17,
+              }}
+            >
+              {faq.ans}
+            </Typography>
           </AccordionDetails>
         </Accordion>
       ))}

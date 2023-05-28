@@ -7,6 +7,9 @@ import ServiceInfo from "./service-info";
 import AdditionalInfo from "./additional-info";
 import BasicInfo from "./basic-info";
 import CompleteRequest from "./complete-request";
+import Successful from "./success";
+import Heading from "../global/heading";
+import { Container } from "@mui/material";
 
 const steps = [
   "Service Info",
@@ -19,8 +22,8 @@ export default function HorizontalLinearStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
   const [orders, setOrders] = React.useState({
     services: [],
-    tflZone: "",
-    tflCharge: null,
+    zone: "",
+    zoneCharge: null,
     time: null,
     urgencyCharge: null,
     customer: {
@@ -30,7 +33,10 @@ export default function HorizontalLinearStepper() {
       address: "",
     },
     total: null,
+    agreedToTerms: false,
   });
+
+  const [success, setSuccess] = React.useState(false);
 
   console.log(orders);
 
@@ -42,84 +48,66 @@ export default function HorizontalLinearStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  if (activeStep === 4) {
+    return (
+      <Box>
+        <Successful />
+      </Box>
+    );
+  }
+
   return (
-    <Box sx={{ width: "100%" }}>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label, index) => {
-          return (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          );
-        })}
-      </Stepper>
+    <Container maxWidth="none" sx={{ mt: 7, maxWidth: 650 }}>
+      <Box sx={{ width: "100%" }}>
+        <Heading sx={{ textAlign: "center", mb: 5 }}>Request a Quote</Heading>
 
-      {activeStep === 0 ? (
-        <ServiceInfo
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
-          orders={orders}
-          setOrders={setOrders}
-        />
-      ) : null}
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label, index) => {
+            return (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            );
+          })}
+        </Stepper>
 
-      {activeStep === 1 ? (
-        <AdditionalInfo
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
-          orders={orders}
-          setOrders={setOrders}
-        />
-      ) : null}
+        {activeStep === 0 ? (
+          <ServiceInfo
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            orders={orders}
+            setOrders={setOrders}
+          />
+        ) : null}
 
-      {activeStep === 2 ? (
-        <BasicInfo
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
-          orders={orders}
-          setOrders={setOrders}
-        />
-      ) : null}
+        {activeStep === 1 ? (
+          <AdditionalInfo
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            orders={orders}
+            setOrders={setOrders}
+          />
+        ) : null}
 
-      {activeStep === 3 ? (
-        <CompleteRequest
-          activeStep={activeStep}
-          setActiveStep={setActiveStep}
-          orders={orders}
-          setOrders={setOrders}
-        />
-      ) : null}
+        {activeStep === 2 ? (
+          <BasicInfo
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            orders={orders}
+            setOrders={setOrders}
+          />
+        ) : null}
 
-      {/* {activeStep === steps.length ? (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            All steps completed - you&apos;re finished
-          </Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button onClick={handleReset}>Reset</Button>
-          </Box>
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: "1 1 auto" }} />
-
-            <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? "Finish" : "Next"}
-            </Button>
-          </Box>
-        </React.Fragment>
-      )} */}
-    </Box>
+        {activeStep === 3 ? (
+          <CompleteRequest
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+            orders={orders}
+            setOrders={setOrders}
+            setSuccess={setSuccess}
+          />
+        ) : null}
+      </Box>
+    </Container>
   );
 }

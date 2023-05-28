@@ -48,14 +48,15 @@ const ServicesPage = () => {
       <PageHeader title="Services" bgImage={bgImage} />
       <Container sx={{ my: 10 }}>
         <Heading sx={{ textAlign: "center", mb: 1 }}>
-          Our Best Cleaning Services
+          Your Comprehensive Solution for Home Safety Certification Services
         </Heading>
         <Paragraph
           sx={{ maxWidth: 700, mx: "auto", textAlign: "center", mb: 5 }}
         >
-          Ensure that customer needs and expectations are determined and
-          fulfilled with the aim of achieving customer satisfaction through over
-          best practices.
+          Our experienced team offers a range of certifications to ensure your
+          home is safe and compliant with regulations. We are committed to
+          providing reliable and efficient services at competitive prices, and
+          we strive to ensure the safety and well-being of our clients.
         </Paragraph>
         <Grid container spacing={3}>
           {services.map((service) => {
@@ -72,3 +73,19 @@ const ServicesPage = () => {
 };
 
 export default ServicesPage;
+
+export const Head = () => (
+  <>
+    <title>
+      Property Safety Certifications and Compliance Services | Home Safety Cert
+    </title>
+    <meta
+      name="title"
+      content="Get Expert Safety Services for Your Home | Home Safety Cert"
+    />
+    <meta
+      name="description"
+      content="Discover Home Safety Cert's commitment to safety and service. Learn more about our team and how we can help you with safety certifications today."
+    />
+  </>
+);

@@ -1,4 +1,5 @@
 import { ErrorMessage } from "@hookform/error-message";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -12,6 +13,7 @@ import {
   Select,
   Stack,
 } from "@mui/material";
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -75,7 +77,25 @@ const ServiceInfo = ({ activeStep, setActiveStep, orders, setOrders }) => {
 
     setOrders({ ...orders, services: services });
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    // setActiveStep(3);
   };
+
+  const { prices } = useStaticQuery(graphql`
+    query CheckoutQuery {
+      prices: allStripePrice {
+        nodes {
+          id
+          product {
+            name
+          }
+          currency
+          unit_amount
+        }
+      }
+    }
+  `);
+
+  console.log(prices.nodes);
 
   return (
     <>
@@ -208,15 +228,20 @@ const ServiceInfo = ({ activeStep, setActiveStep, orders, setOrders }) => {
 
         <Box sx={{ display: "flex", flexDirection: "row", pt: 2, mb: 5 }}>
           <Button
+            startIcon={<ArrowBack />}
             color="inherit"
             disabled={activeStep === 0}
-            // onClick={handleBack}
-            sx={{ mr: 1 }}
+            sx={{ mr: 1, color: "white" }}
           >
             Back
           </Button>
           <Box sx={{ flex: "1 1 auto" }} />
-          <Button type="submit" sx={{ mr: 1 }}>
+          <Button
+            size="small"
+            type="submit"
+            sx={{ mr: 1 }}
+            endIcon={<ArrowForward />}
+          >
             Next
           </Button>
         </Box>

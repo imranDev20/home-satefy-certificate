@@ -38,9 +38,10 @@ const Footer = () => {
               paragraph
               sx={{ ...theme.typography.body2, color: "white" }}
             >
-              MrHandy is your one-call solution for a wide range of maintenance
-              and repair needs. We are fully insured professional team job
-              right. We arearrive on time in uniform.
+              Home Safety Cert provides essential safety certifications for
+              homes and properties in London, UK. Our expert inspections ensure
+              compliance with regulations, giving you the assurance that your
+              property is safe and secure.
             </Typography>
           </Grid>
           <Grid item sm={3}>
@@ -141,53 +142,59 @@ const Footer = () => {
             >
               Contact Us
             </Typography>
-            {Object.values(contacts).map((item) => (
-              <Stack
-                key={item.id}
-                direction="row"
-                alignItems="center"
-                my={2}
-                sx={{
-                  ".MuiTypography-root:hover": {
-                    color: item.type.includes("link") ? "secondary.main" : null,
-                    transition: ".5s color ease",
-                  },
+            {Object.values(contacts)
+              .slice(0, 3)
+              .map((item) => (
+                <Stack
+                  key={item.id}
+                  direction="row"
+                  alignItems="center"
+                  my={2}
+                  sx={{
+                    ".MuiTypography-root:hover": {
+                      color: item.type.includes("link")
+                        ? "secondary.main"
+                        : null,
+                      transition: ".5s color ease",
+                    },
 
-                  "svg:has(+ a:hover)": {
-                    color: item.type.includes("link") ? "secondary.main" : null,
-                    transition: ".5s color ease",
-                  },
-                  a: {
-                    color: "white",
-                    transition: ".5s color ease",
-                    textDecoration: "none",
-                    "&:hover": {
+                    "svg:has(+ a:hover)": {
+                      color: item.type.includes("link")
+                        ? "secondary.main"
+                        : null,
+                      transition: ".5s color ease",
+                    },
+                    a: {
+                      color: "white",
+                      transition: ".5s color ease",
+                      textDecoration: "none",
+                      "&:hover": {
+                        color: "secondary.main",
+                      },
+                    },
+
+                    svg: {
+                      mr: 2,
                       color: "secondary.main",
                     },
-                  },
-
-                  svg: {
-                    mr: 2,
-                    color: "secondary.main",
-                  },
-                }}
-              >
-                <item.icon />
-                {item.type.includes("email") ? (
-                  <a href={`mailto:${item.text}`}>{item.text}</a>
-                ) : item.type.includes("phone") ? (
-                  <a href={`tel:${item.text}`}>{item.text}</a>
-                ) : (
-                  <Typography sx={{ color: "white" }}>{item.text}</Typography>
-                )}
-              </Stack>
-            ))}
+                  }}
+                >
+                  <item.icon />
+                  {item.type.includes("email") ? (
+                    <a href={`mailto:${item.text}`}>{item.text}</a>
+                  ) : item.type.includes("phone") ? (
+                    <a href={`tel:${item.text}`}>{item.text}</a>
+                  ) : (
+                    <Typography sx={{ color: "white" }}>{item.text}</Typography>
+                  )}
+                </Stack>
+              ))}
           </Grid>
         </Grid>
         <Divider sx={{ border: "1px solid rgba(255,255,255,.07)", my: 3 }} />
         <Typography paragraph textAlign="center" sx={{ color: "white" }}>
-          Copyright © {new Date().getFullYear()} Home Safety Certificate. All
-          rights reserved.
+          Copyright © {new Date().getFullYear()} Home Safety Cert. All rights
+          reserved.
         </Typography>
       </Container>
     </Box>

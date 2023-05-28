@@ -9,6 +9,7 @@ import {
   BsClockFill,
 } from "react-icons/bs";
 import { theme } from "./layout";
+import { contacts } from "../../utils/constant";
 
 const Topbar = () => {
   return (
@@ -41,7 +42,7 @@ const Topbar = () => {
               <BsFillTelephoneFill
                 style={{ marginRight: 5, color: theme.palette.secondary.main }}
               />
-              +1-2345-6789-101
+              {contacts.phone.text}
             </Link>
             <Link
               underline="none"
@@ -64,7 +65,7 @@ const Topbar = () => {
               <BsFillEnvelopeFill
                 style={{ marginRight: 5, color: theme.palette.secondary.main }}
               />
-              info@example.com
+              {contacts.email.text}
             </Link>
             <Typography
               underline="none"
@@ -83,7 +84,7 @@ const Topbar = () => {
               <BsClockFill
                 style={{ marginRight: 5, color: theme.palette.secondary.main }}
               />
-              Monday-Friday: 10:00-19:00
+              {contacts.workingHours.text}
             </Typography>
           </Grid>
           <Grid item sm={1}></Grid>

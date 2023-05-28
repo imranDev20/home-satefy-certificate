@@ -1,20 +1,30 @@
-import { Container } from "@mui/material";
 import React from "react";
-import Heading from "../components/global/heading";
 import Layout from "../components/global/layout";
 import HorizontalLinearStepper from "../components/quote/stepper";
 
 const Quote = () => {
   return (
     <Layout>
-      <Container maxWidth="none" sx={{ mt: 7, maxWidth: 650 }}>
-        <Heading sx={{ textAlign: "center", mb: 5 }}>Request a Quote</Heading>
-        <HorizontalLinearStepper />
-      </Container>
+      <HorizontalLinearStepper />
     </Layout>
   );
 };
 
 export default Quote;
 
-export const Head = () => <title>Quote</title>;
+export const Head = () => (
+  <>
+    <title>
+      Get a Quick Quote for Safety Certifications | Home Safety Cert
+    </title>
+
+    <meta
+      name="title"
+      content="Quick and Easy Safety Certification Quotes | Home Safety Cert"
+    />
+    <meta
+      name="description"
+      content="Get a quote for your safety certifications with Home Safety Cert. We offer Gas Safety Certificates, Electrical Certifications, EPCs, and more. Contact us for a hassle-free quote."
+    />
+  </>
+);

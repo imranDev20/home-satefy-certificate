@@ -33,10 +33,10 @@ const AdditionalInfo = ({ activeStep, setActiveStep, orders, setOrders }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      tflZone:
-        orders.tflZone === "Inside TFL Zone 1"
+      zone:
+        orders.zone === "Inside TFL Zone 1"
           ? 0
-          : orders.tflZone === "Outside TFL Zone 5"
+          : orders.zone === "Outside TFL Zone 5"
           ? 1
           : "",
       isUrgent:
@@ -53,8 +53,8 @@ const AdditionalInfo = ({ activeStep, setActiveStep, orders, setOrders }) => {
   const onSubmit = (data) => {
     setOrders({
       ...orders,
-      tflZone: data.tflZone === 0 ? "Inside TFL Zone 1" : "Outside TFL Zone 5",
-      tflCharge: data.tflZone === 0 ? 30 : 10,
+      zone: data.zone === 0 ? "Inside TFL Zone 1" : "Outside TFL Zone 5",
+      zoneCharge: data.zone === 0 ? 30 : 10,
       time:
         isUrgent === 0
           ? "24 Hours"
@@ -78,7 +78,7 @@ const AdditionalInfo = ({ activeStep, setActiveStep, orders, setOrders }) => {
         sx={{ my: 5, maxWidth: 500, mx: "auto" }}
       >
         <Controller
-          name="tflZone"
+          name="zone"
           control={control}
           render={({ field }) => (
             <FormControl fullWidth>

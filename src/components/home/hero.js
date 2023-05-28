@@ -26,7 +26,10 @@ const CustomSwiper = styled(Swiper)(() => ({
 const Hero = () => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
-      allFile(filter: { sourceInstanceName: { eq: "hero" } }) {
+      allFile(
+        filter: { sourceInstanceName: { eq: "hero" } }
+        sort: { childMdx: { frontmatter: { id: ASC } } }
+      ) {
         nodes {
           childMdx {
             frontmatter {
@@ -104,6 +107,7 @@ const Hero = () => {
                         fontWeight={400}
                         sx={{
                           color: "black.main",
+                          fontSize: 18,
                         }}
                         my={1}
                       >

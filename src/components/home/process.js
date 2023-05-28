@@ -13,26 +13,28 @@ const Process = () => {
       id: 1,
       title: "Book your service",
       subtitle:
-        "We provide all domestic landlord certificate services. You will need to select your preferred service/s.",
+        "Book our services via website or phone. Request a quote for fast, reliable service",
       icon: BookingIcon,
     },
     {
       id: 2,
       title: "Confirm the Inspection date",
-      subtitle: "Find your preferred slot for the appointment.",
+      subtitle:
+        "Choose the date and time that suits you best. We'll confirm it shortly. Flexible scheduling for your convenience.",
       icon: CalendarIcon,
     },
     {
       id: 3,
       title: "Open the door",
       subtitle:
-        "Qualified, registered & vetted professional will visit your property for inspection.",
+        "Open the door and let our certified experts handle the job, hassle-free. Your safety is our top priority.",
       icon: DoorIcon,
     },
     {
       id: 4,
       title: "Receive your Certificate",
-      subtitle: "Once the inspection completed, certificate will email to you.",
+      subtitle:
+        "After our certified professionals have completed their inspection and testing, you will receive your official certification promptly.",
       icon: CertificateIcon,
     },
   ];
@@ -46,7 +48,7 @@ const Process = () => {
           mx: "auto",
         }}
       >
-        Get Amazing Cleaning By Mr. Handy Just By Following Simple Steps
+        Get the Services You Need in Just a Few Easy Steps
       </Heading>
       <Grid container spacing={5}>
         {processes.map((process, index) => (

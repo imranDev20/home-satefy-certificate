@@ -12,20 +12,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import {
-  Container,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Slide,
-  useScrollTrigger,
-} from "@mui/material";
+import { Container, Slide, useScrollTrigger } from "@mui/material";
 import { Link } from "gatsby";
 import { CgArrowLongRight } from "react-icons/cg";
 import { theme } from "./layout";
-import CustomizedDialogs from "./dialog";
 import { Link as GatsbyLink } from "gatsby";
 import { navItems } from "../../utils/constant";
 
@@ -47,7 +37,6 @@ function HideOnScroll(props) {
 }
 
 const DrawerAppBar = (props) => {
-  const [dialogOpen, setDialogOpen] = React.useState(false);
   const { window, location } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -120,7 +109,7 @@ const DrawerAppBar = (props) => {
                   display: { xs: "none", sm: "block" },
                 }}
               >
-                Home Safety Certificate
+                Home Safety Cert
               </Typography>
               <Box sx={{ display: { xs: "none", sm: "block" } }}>
                 {navItems.map((item) => (
@@ -154,7 +143,6 @@ const DrawerAppBar = (props) => {
                 to="/quote/"
                 LinkComponent={GatsbyLink}
                 sx={{ ml: 2 }}
-                onClick={() => setDialogOpen(true)}
                 endIcon={<CgArrowLongRight />}
               >
                 Request a Quote

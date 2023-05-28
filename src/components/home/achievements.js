@@ -7,16 +7,12 @@ import { ProgressCircle } from "./progress-circle";
 import WorldImage from "../../images/world.svg";
 
 const achievements = [
-  { id: 1, title: "ACTIVE WORKERS & EQUIPMENT" },
-  { id: 2, title: "WORLD WIDE COVERAGE" },
-  { id: 3, title: "TOTAL PROJECTS COMPLETED" },
+  { id: 1, title: "Client Satisfactions", number: 99 },
+  { id: 2, title: "Successful Certifications", number: 100 },
+  { id: 3, title: "On-time Completion", number: 97 },
 ];
 
 function Achievements() {
-  function rand(min = 0, max = 100) {
-    return Math.floor(Math.random() * (+max - +min)) + +min;
-  }
-
   return (
     <Box component="section">
       <Grid container spacing={0}>
@@ -30,19 +26,25 @@ function Achievements() {
             backgroundSize: "cover",
           }}
         >
-          <Box sx={{ maxWidth: 700, px: 6, py: 7 }}>
+          <Box sx={{ maxWidth: 700, px: 5, py: 7 }}>
             <Heading
               sx={{
                 color: "white",
               }}
             >
-              State Of The Art Special Cleaning Techniques According To Industry
-              Best Practices.
+              You Motivate Us to Deliver Exceptional Certification Services
             </Heading>
             <Paragraph sx={{ color: "white", mt: 3 }}>
-              Ensure that customer needs and expectations are determined and
-              fulfilled with the aim of achieving customer satisfaction through
-              over best practices.
+              Discover our impressive record of satisfied clients and see why
+              they keep coming back to us for their certification needs. With
+              over 10,000 successful certifications completed, an average
+              response time of under 24 hours, and recognition for excellence in
+              service, we've earned our reputation as a trusted partner. Our 98%
+              on-time completion rate and 99% client satisfaction rate are
+              testaments to our commitment to quality. Our team of experienced
+              professionals is dedicated to providing expert guidance and
+              personalized service to ensure your certification needs are met
+              efficiently and effectively.
             </Paragraph>
             <Grid
               container
@@ -65,7 +67,7 @@ function Achievements() {
                     }}
                   >
                     <IntersectionObserver>
-                      <ProgressCircle percents={rand()} counter={true} />
+                      <ProgressCircle percents={item.number} counter={true} />
                     </IntersectionObserver>
                     <Typography
                       textAlign="center"

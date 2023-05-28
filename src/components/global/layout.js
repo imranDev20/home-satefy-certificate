@@ -1,10 +1,10 @@
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-
 import { CssBaseline } from "@mui/material";
 import Footer from "./footer";
 import DrawerAppBar from "./drawer";
 import Topbar from "./topbar";
+import { Script } from "gatsby";
 
 export const theme = createTheme({
   typography: {
@@ -223,6 +223,25 @@ const Layout = ({ children, location }) => {
       <Topbar />
       <DrawerAppBar location={location}>{children}</DrawerAppBar>
       <Footer />
+
+      <Script
+        async
+        defer
+        id="first-unique-id"
+        dangerouslySetInnerHTML={{
+          __html: `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          (function(){
+          var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+          s1.async=true;
+          s1.src='https://embed.tawk.to/${process.env.TAWK_PROPERTY_ID}/default';
+          s1.charset='UTF-8';
+          s1.setAttribute('crossorigin','*');
+          s0.parentNode.insertBefore(s1,s0);
+          })();`,
+        }}
+      />
+
+      <script type="text/javascript"></script>
     </ThemeProvider>
   );
 };

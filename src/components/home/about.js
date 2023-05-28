@@ -1,10 +1,12 @@
-import { Button, Container, Grid, Stack, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import { theme } from "../global/layout";
 import Paragraph from "../global/paragraph";
 import { RxCheck } from "react-icons/rx";
 import { CgArrowLongRight } from "react-icons/cg";
 import Heading from "../global/heading";
+import { StaticImage } from "gatsby-plugin-image";
+import AboutUsImage from "../../images/about-us-home.jpeg";
 
 const features = [
   { id: 1, text: "Same & next day appointment" },
@@ -19,22 +21,44 @@ const About = () => {
   return (
     <Container sx={{ my: 15 }}>
       <Grid container>
-        <Grid item sm={6}></Grid>
+        <Grid item sm={6}>
+          <StaticImage
+            src="../../images/worker.jpeg"
+            alt="Serviceman from   Home Safety Cert"
+            placeholder="blurred"
+            height={650}
+            layout="constrained"
+          />
+        </Grid>
         <Grid item sm={6}>
           <Heading>
-            Experiences On Cleaning Area With Successful Project On Going.
+            About Home Safety Cert - Our Commitment to Safety and Service
           </Heading>
 
           <Paragraph sx={{ my: 2 }}>
-            The Company’s mission is to ensure a professional & personalised
-            total homecare solution for all customers. Completely trustworthy
-            and hassle free. The Company’s vision is to cater to the largest.
+            We are a team of professionals focused on providing landlord safety
+            certifications in a hassle-free manner. Our services include Gas
+            Safety Certificates, Electrical certification, Energy Performance
+            Certificates, PAT testing, Fire Alarm Certificates, Fire Risk
+            Assessments, and more. Our vetted experts have extensive experience
+            in their respective fields.
           </Paragraph>
           <Paragraph sx={{ my: 2 }}>
-            With years of culture of integrity and professionalism, our
-            credibility as business has secured us contracts with huge range of
-            clients.
+            Our customer-centric approach includes a rating system for
+            tradespeople and a general safety check for potential hazards during
+            each property visit. Our reminder service sends notifications when
+            services are due, saving you time and hassle. We are constantly
+            updating our system to make it easier for landlords and estate
+            agents.
           </Paragraph>
+          <Paragraph sx={{ my: 2 }}>
+            We prioritize tenant safety and insurance claims, ensuring complete
+            compliance and safety for your properties. Our services are
+            hassle-free and require no contract or direct debit setup. We only
+            charge when you agree to our services. Choose us for reliable and
+            stress-free certification services.
+          </Paragraph>
+
           <Grid container spacing={4}>
             <Grid item sm={6}>
               {features.slice(0, 3).map((item) => (

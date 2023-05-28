@@ -1,28 +1,33 @@
 import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
-
-const heroInfo = [
-  {
-    id: 1,
-    icon: "icon",
-    title: "Opening Hours",
-    info: "Mon - Fri: 08:00 - 20:00",
-  },
-  {
-    id: 2,
-    icon: "icon",
-    title: "Where You Can Find Us",
-    info: "49 Grand Street, Los Angeles",
-  },
-  {
-    id: 3,
-    icon: "icon",
-    title: "24/7 We Support You",
-    info: "(22) 400-630 / (22) 400-631",
-  },
-];
+import OpenIcon from "../../images/icons/open.svg";
+import AddressMarkerIcon from "../../images/icons/address-marker.svg";
+import PhoneIcon from "../../images/icons/phone.svg";
+import EmailAtIcon from "../../images/icons/email-at.svg";
+import { contacts } from "../../utils/constant";
 
 const HeroInfos = () => {
+  const heroInfo = [
+    {
+      id: 1,
+      icon: OpenIcon,
+      title: "Opening Hours",
+      info: "Mon - Fri: 08:00 - 18:00",
+    },
+    {
+      id: 2,
+      icon: EmailAtIcon,
+      title: "Get in touch with us",
+      info: contacts.email.text,
+    },
+    {
+      id: 3,
+      icon: PhoneIcon,
+      title: "24/7 Support",
+      info: "020 3488 4929",
+    },
+  ];
+
   return (
     <Box
       sx={{
@@ -55,9 +60,21 @@ const HeroInfos = () => {
           >
             <Grid container spacing={3}>
               {heroInfo.map((item) => (
-                <Grid container item md={4}>
-                  <Grid item xs={3}>
-                    {item.icon}
+                <Grid key={item.id} container item md={4}>
+                  <Grid
+                    item
+                    xs={3}
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <img
+                      style={{ width: 40, height: 40 }}
+                      src={item.icon}
+                      alt=""
+                    />
                   </Grid>
                   <Grid item xs={9}>
                     <Typography

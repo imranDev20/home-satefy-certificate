@@ -28,4 +28,18 @@ const IndexPage = (props) => {
 
 export default IndexPage;
 
-export const Head = () => <title>Home</title>;
+export const Head = () => (
+  <>
+    <title>
+      Property Certification and Gas Safety Services | Home Safety Cert
+    </title>
+    <meta
+      name="title"
+      content="Gas Safety Services in London | Property Certification | Home Safety Cert"
+    />
+    <meta
+      name="description"
+      content="Ensure your property meets all certification requirements with our expert services. We specialize in Gas Safety, EICR, and more. Contact us today! Home Safety Cert."
+    />
+  </>
+);
