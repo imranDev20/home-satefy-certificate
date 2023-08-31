@@ -1,6 +1,11 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
   trailingSlash: `never`,
   siteMetadata: {
@@ -103,8 +108,7 @@ module.exports = {
       resolve: `gatsby-source-stripe`,
       options: {
         objects: ["Sku", "Product", "Price"],
-        secretKey:
-          "sk_test_51L4d6jJZT84KLAtmy1xwgF0QUEQnvXqRPAguUi9xTLI6SxVC8X2JyoaOw34Ty3OZbyuSYeSmj995JEQnYQfPTo1l00d7ND33kh",
+        secretKey: process.env.STRIPE_SECRET_KEY,
         downloadFiles: true,
       },
     },

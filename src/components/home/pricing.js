@@ -65,7 +65,7 @@ const Pricing = ({ isPage }) => {
     >
       <Container>
         <Heading sx={{ textAlign: "center", mb: 5 }}>Our Pricing Plans</Heading>
-        <Masonry spacing={5} columns={3}>
+        <Masonry spacing={5} columns={{ xs: 1, md: 2, lg: 3 }}>
           {priceData.map((item) => (
             <Card
               elevation={0}

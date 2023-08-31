@@ -14,9 +14,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Container, Slide, useScrollTrigger } from "@mui/material";
 import { Link } from "gatsby";
-import { CgArrowLongRight } from "react-icons/cg";
 import { theme } from "./layout";
-import { Link as GatsbyLink } from "gatsby";
 import { navItems } from "../../utils/constant";
 
 const drawerWidth = 240;
@@ -47,7 +45,7 @@ const DrawerAppBar = (props) => {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Home Safety Cert
       </Typography>
       <Divider />
       <List>
@@ -55,7 +53,7 @@ const DrawerAppBar = (props) => {
           <ListItem key={item} disablePadding>
             <ListItemButton
               component={Link}
-              to={item === "Home" ? "/" : item.toLowerCase()}
+              to={item === "Home" ? "/" : "/" + item.toLowerCase()}
               sx={{ textAlign: "center" }}
             >
               <ListItemText primary={item} />
@@ -65,9 +63,6 @@ const DrawerAppBar = (props) => {
       </List>
     </Box>
   );
-
-  const container =
-    window !== undefined ? () => window().document.body : undefined;
 
   return (
     <>
@@ -91,27 +86,17 @@ const DrawerAppBar = (props) => {
                 alignItems: "center",
               }}
             >
-              <IconButton
-                color="inherit"
-                aria-label="open drawer"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2, display: { sm: "none" } }}
-              >
-                <MenuIcon />
-              </IconButton>
               <Typography
                 variant="h6"
                 component="div"
                 sx={{
                   flexGrow: 1,
                   color: "primary.main",
-                  display: { xs: "none", sm: "block" },
                 }}
               >
                 Home Safety Cert
               </Typography>
-              <Box sx={{ display: { xs: "none", sm: "block" } }}>
+              <Box sx={{ display: { xs: "none", lg: "block" } }}>
                 {navItems.map((item) => (
                   <Button
                     key={item}
@@ -137,23 +122,35 @@ const DrawerAppBar = (props) => {
                   </Button>
                 ))}
               </Box>
-              <Button
+              {/* <Button
                 variant="blue"
                 color="primary"
                 to="/quote/"
                 LinkComponent={GatsbyLink}
-                sx={{ ml: 2 }}
+                sx={{ ml: 2, display: { xs: "none", lg: "flex" } }}
                 endIcon={<CgArrowLongRight />}
               >
                 Request a Quote
-              </Button>
+              </Button> */}
+              <IconButton
+                color="inherit"
+                aria-label="open drawer"
+                edge="start"
+                onClick={handleDrawerToggle}
+                sx={{
+                  mr: 2,
+                  display: { xs: "flex", lg: "none" },
+                  color: "primary.main",
+                }}
+              >
+                <MenuIcon />
+              </IconButton>
             </Toolbar>
           </Container>
         </AppBar>
       </HideOnScroll>
       <Box component="nav">
         <Drawer
-          container={container}
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
@@ -161,7 +158,7 @@ const DrawerAppBar = (props) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "lg" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
@@ -171,7 +168,16 @@ const DrawerAppBar = (props) => {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ width: "100%" }}>
+      <Box
+        component="main"
+        sx={{
+          width: "100%",
+          backgroundColor:
+            location && location.pathname === "/quote"
+              ? "background.main"
+              : "white",
+        }}
+      >
         {props.children}
       </Box>
     </>

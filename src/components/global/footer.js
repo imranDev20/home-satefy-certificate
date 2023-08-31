@@ -26,7 +26,7 @@ const Footer = () => {
     <Box component="footer" sx={{ backgroundColor: "primary.main" }}>
       <Container maxWidth="lg" sx={{ color: "white", py: 5 }}>
         <Grid container spacing={5}>
-          <Grid item sm={3}>
+          <Grid item md={4}>
             <Typography
               component="h3"
               variant="h6"
@@ -44,7 +44,7 @@ const Footer = () => {
               property is safe and secure.
             </Typography>
           </Grid>
-          <Grid item sm={3}>
+          <Grid item md={2}>
             <Typography
               component="h3"
               variant="h6"
@@ -90,7 +90,7 @@ const Footer = () => {
             ))}
           </Grid>
 
-          <Grid item sm={3}>
+          <Grid item md={3}>
             <Typography
               component="h3"
               variant="h6"
@@ -134,7 +134,7 @@ const Footer = () => {
               </Stack>
             ))}
           </Grid>
-          <Grid item sm={3}>
+          <Grid item md={3}>
             <Typography
               component="h3"
               variant="h6"

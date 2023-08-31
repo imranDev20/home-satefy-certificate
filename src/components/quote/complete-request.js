@@ -50,21 +50,7 @@ const CompleteRequest = ({
     },
   });
 
-  const onSubmit = async (data) => {
-    setIsLoading(true);
-    const orderData = {
-      services: orders.services,
-      user: orders.customer,
-    };
-
-    const result = await http.post(process.env.API_URL + "/orders/", orderData);
-
-    if (result.data.success) {
-      setIsLoading(false);
-      setSuccess(true);
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    }
-  };
+  const onSubmit = async (data) => {};
 
   function calculateServiceTotal() {
     const servicePrices = orders.services.map((item) => item.price);

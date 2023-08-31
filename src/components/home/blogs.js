@@ -64,7 +64,7 @@ export default function Blogs() {
           const { title, id, excerpt, featuredImage, author, category } =
             blog.childMdx.frontmatter;
           return (
-            <Grid key={id} item md={4}>
+            <Grid key={id} item md={4} sm={6} xs={12}>
               <Card
                 sx={{
                   boxShadow: "0 0 10px 0 rgba(0,0,0,.1)",

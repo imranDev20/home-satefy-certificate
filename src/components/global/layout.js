@@ -223,7 +223,6 @@ const Layout = ({ children, location }) => {
       <Topbar />
       <DrawerAppBar location={location}>{children}</DrawerAppBar>
       <Footer />
-
       <Script
         async
         defer
@@ -233,7 +232,7 @@ const Layout = ({ children, location }) => {
           (function(){
           var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
           s1.async=true;
-          s1.src='https://embed.tawk.to/${process.env.TAWK_PROPERTY_ID}/default';
+          s1.src='https://embed.tawk.to/${process.env.GATSBY_TAWK_PROPERTY_ID}/default';
           s1.charset='UTF-8';
           s1.setAttribute('crossorigin','*');
           s0.parentNode.insertBefore(s1,s0);
@@ -241,7 +240,7 @@ const Layout = ({ children, location }) => {
         }}
       />
 
-      <script type="text/javascript"></script>
+      <Script type="text/javascript"></Script>
     </ThemeProvider>
   );
 };

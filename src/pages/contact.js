@@ -124,8 +124,8 @@ const ContactPage = () => {
             backgroundColor: "primary.main",
             maxWidth: 1000,
             mx: "auto",
-            borderRadius: 200,
-            position: "absolute",
+            borderRadius: { xs: 0, md: 200 },
+            position: { xs: "relative", md: "absolute" },
             left: "50%",
             top: "-15%",
             transform: "translateX(-50%)",
@@ -134,7 +134,8 @@ const ContactPage = () => {
           {infoBlocks.map((item) => (
             <Grid
               item
-              sm={4}
+              md={4}
+              xs={12}
               sx={{
                 py: 3,
                 px: 5,

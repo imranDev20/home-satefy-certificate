@@ -8,6 +8,7 @@ import styled from "@emotion/styled";
 import { convertToBgImage } from "gbimage-bridge";
 import BackgroundImage from "gatsby-background-image";
 import { CgArrowLongRight } from "react-icons/cg";
+import { Link as GatsbyLink } from "gatsby";
 
 // Import Swiper styles
 import "swiper/css";
@@ -39,7 +40,11 @@ const Hero = () => {
               title
               image {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    placeholder: BLURRED
+                    width: 1920
+                    layout: CONSTRAINED
+                  )
                 }
               }
             }
@@ -66,7 +71,7 @@ const Hero = () => {
         navigation
         modules={[Navigation, Pagination, Autoplay, EffectFade]}
       >
-        {slides.map((slide) => {
+        {slides.map((slide, index) => {
           const slideImage =
             slide.childMdx.frontmatter.image.childImageSharp.gatsbyImageData;
 
@@ -128,15 +133,16 @@ const Hero = () => {
                       <Typography variant="p" color="white">
                         {slide.childMdx.frontmatter.description}
                       </Typography>
-                      <Box>
-                        <Button
-                          endIcon={<CgArrowLongRight />}
-                          variant="blue"
-                          sx={{ mt: 3 }}
-                        >
-                          Learn More
-                        </Button>
-                      </Box>
+                      <Button
+                        disabled
+                        endIcon={<CgArrowLongRight />}
+                        variant="blue"
+                        LinkComponent={GatsbyLink}
+                        to={index === 0 ? "/quote" : "/about"}
+                        sx={{ mt: 3 }}
+                      >
+                        {index === 0 ? "Request a Quote" : "Learn More"}
+                      </Button>
                     </Box>
                   </Container>
                 </Box>

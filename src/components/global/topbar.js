@@ -17,6 +17,7 @@ const Topbar = () => {
       component="section"
       sx={{
         backgroundColor: "primary.main",
+        display: { xs: "none", lg: "block" },
       }}
     >
       <Container maxWidth="lg">

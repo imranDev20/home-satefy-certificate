@@ -64,6 +64,19 @@ function ServicesCards() {
         Our Comprehensive Home Safety Solutions
       </Heading>
       <StyledSwiper
+        breakpoints={{
+          // when window width is >= 640px
+          0: {
+            slidesPerView: 1,
+          },
+          // when window width is >= 768px
+          900: {
+            slidesPerView: 2,
+          },
+          1200: {
+            slidesPerView: 3,
+          },
+        }}
         spaceBetween={30}
         slidesPerView={3}
         onSlideChange={() => console.log("slide change")}

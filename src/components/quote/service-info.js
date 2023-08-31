@@ -30,56 +30,6 @@ const MenuProps = {
 };
 
 const ServiceInfo = ({ activeStep, setActiveStep, orders, setOrders }) => {
-  const {
-    handleSubmit,
-    watch,
-    getValues,
-    control,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      services: orders.services.map((item) => item.service),
-      gasAppliance: handleDefaultValue("Gas"),
-      fuseBoard: handleDefaultValue("EICR"),
-      bedroom: handleDefaultValue("EPC"),
-    },
-  });
-
-  function handleDefaultValue(service) {
-    return orders.services.map((item) => item.service).includes(service)
-      ? `${orders.services.find((item) => item.service === service).quantity}_${
-          orders.services.find((item) => item.service === service).price
-        }`
-      : "";
-  }
-
-  const services = watch("services");
-
-  const onSubmit = (data) => {
-    // const services = getValues("services");
-
-    const services = data.services.map((item) => ({
-      service: item,
-      type: item === "Gas" ? "appliance" : item === "EICR" ? "board" : "room",
-      price:
-        item === "Gas"
-          ? parseFloat(data.gasAppliance.split("_")[1])
-          : item === "EICR"
-          ? parseFloat(data.fuseBoard.split("_")[1])
-          : parseFloat(data.bedroom.split("_")[1]),
-      quantity:
-        item === "Gas"
-          ? data.gasAppliance.split("_")[0]
-          : item === "EICR"
-          ? data.fuseBoard.split("_")[0]
-          : data.bedroom.split("_")[0],
-    }));
-
-    setOrders({ ...orders, services: services });
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-    // setActiveStep(3);
-  };
-
   const { prices } = useStaticQuery(graphql`
     query CheckoutQuery {
       prices: allStripePrice {

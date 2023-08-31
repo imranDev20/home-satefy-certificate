@@ -178,13 +178,13 @@ const Services = () => {
       </StyledSwiper>
       <Container sx={{ my: 5 }}>
         <Grid container spacing={5}>
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <Heading>
               Contact Us for Professional and Reliable Certification Services in
               London.
             </Heading>
           </Grid>
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <Paragraph>
               Secure your home's safety today. Our experienced team is dedicated
               to providing top-quality service and ensuring your peace of mind.

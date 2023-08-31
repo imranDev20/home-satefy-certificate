@@ -19,23 +19,6 @@ const steps = [
 ];
 
 export default function HorizontalLinearStepper() {
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [orders, setOrders] = React.useState({
-    services: [],
-    zone: "",
-    zoneCharge: null,
-    time: null,
-    urgencyCharge: null,
-    customer: {
-      name: "",
-      email: "",
-      phone: "",
-      address: "",
-    },
-    total: null,
-    agreedToTerms: false,
-  });
-
   const [success, setSuccess] = React.useState(false);
 
   console.log(orders);

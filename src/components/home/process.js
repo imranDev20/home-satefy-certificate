@@ -52,7 +52,7 @@ const Process = () => {
       </Heading>
       <Grid container spacing={5}>
         {processes.map((process, index) => (
-          <Grid item md={3} key={index}>
+          <Grid item md={3} sm={6} xs={12} key={index}>
             <Box
               sx={{
                 display: "flex",

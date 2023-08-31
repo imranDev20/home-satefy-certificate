@@ -66,12 +66,13 @@ const Contact = ({ isPage }) => {
       >
         <Grid
           item
+          xs={12}
           md={6}
           sx={{
             backgroundColor: "primary.main",
             width: "100%",
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: { xs: "center", md: "flex-end" },
           }}
         >
           <Box
@@ -96,14 +97,14 @@ const Contact = ({ isPage }) => {
             <Reviews />
           </Box>
         </Grid>
-        <Grid item md={6} sx={{ backgroundColor: "white" }}>
+        <Grid item xs={12} md={6} sx={{ backgroundColor: "white" }}>
           <BackgroundImage {...bgImage}>
             <Box
               sx={{
                 height: "100%",
                 position: "relative",
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: { xs: "center", md: "flex-start" },
                 "&::before": {
                   content: '""',
                   position: "absolute",

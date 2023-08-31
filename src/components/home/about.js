@@ -6,7 +6,7 @@ import { RxCheck } from "react-icons/rx";
 import { CgArrowLongRight } from "react-icons/cg";
 import Heading from "../global/heading";
 import { StaticImage } from "gatsby-plugin-image";
-import AboutUsImage from "../../images/about-us-home.jpeg";
+import { Link as GatsbyLink } from "gatsby";
 
 const features = [
   { id: 1, text: "Same & next day appointment" },
@@ -21,7 +21,12 @@ const About = () => {
   return (
     <Container sx={{ my: 15 }}>
       <Grid container>
-        <Grid item sm={6}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           <StaticImage
             src="../../images/worker.jpeg"
             alt="Serviceman from   Home Safety Cert"
@@ -30,7 +35,7 @@ const About = () => {
             layout="constrained"
           />
         </Grid>
-        <Grid item sm={6}>
+        <Grid item xs={12} md={6}>
           <Heading>
             About Home Safety Cert - Our Commitment to Safety and Service
           </Heading>
@@ -103,6 +108,8 @@ const About = () => {
             variant="blue"
             color="primary"
             sx={{ mt: 3 }}
+            LinkComponent={GatsbyLink}
+            to="/about"
             endIcon={<CgArrowLongRight />}
           >
             Read More

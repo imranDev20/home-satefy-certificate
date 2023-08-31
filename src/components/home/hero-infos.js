@@ -47,13 +47,14 @@ const HeroInfos = () => {
           justifyContent="flex-end"
           sx={{
             backgroundColor: "primary.main",
-            borderTopRightRadius: 100,
-            borderBottomRightRadius: 100,
+            borderTopRightRadius: { xs: 0, sm: 100 },
+            borderBottomRightRadius: { xs: 0, sm: 100 },
           }}
         >
           <Box
             sx={{
-              width: 1050,
+              maxWidth: 1050,
+              width: "100%",
               py: 4,
               pr: 6,
             }}
@@ -63,7 +64,8 @@ const HeroInfos = () => {
                 <Grid key={item.id} container item md={4}>
                   <Grid
                     item
-                    xs={3}
+                    xs={2}
+                    sm={3}
                     sx={{
                       display: "flex",
                       justifyContent: "center",
@@ -76,7 +78,7 @@ const HeroInfos = () => {
                       alt=""
                     />
                   </Grid>
-                  <Grid item xs={9}>
+                  <Grid item xs={10} sm={9}>
                     <Typography
                       fontWeight={600}
                       sx={{
