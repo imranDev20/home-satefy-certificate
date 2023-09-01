@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Typography, Grid } from "@mui/material";
 import OpenIcon from "../../images/icons/open.svg";
-import AddressMarkerIcon from "../../images/icons/address-marker.svg";
 import PhoneIcon from "../../images/icons/phone.svg";
 import EmailAtIcon from "../../images/icons/email-at.svg";
 import { contacts } from "../../utils/constant";
@@ -19,12 +18,14 @@ const HeroInfos = () => {
       icon: EmailAtIcon,
       title: "Get in touch with us",
       info: contacts.email.text,
+      isEmail: true,
     },
     {
       id: 3,
       icon: PhoneIcon,
       title: "24/7 Support",
       info: "020 3488 4929",
+      isPhone: true,
     },
   ];
 
@@ -75,7 +76,7 @@ const HeroInfos = () => {
                     <img
                       style={{ width: 40, height: 40 }}
                       src={item.icon}
-                      alt=""
+                      alt={item.title}
                     />
                   </Grid>
                   <Grid item xs={10} sm={9}>
@@ -94,7 +95,17 @@ const HeroInfos = () => {
                       sx={{
                         color: "white",
                         fontSize: 16,
+                        textDecoration: "none",
+                        transition: "0.3s ease",
+
+                        "&:hover": {
+                          color: "secondary.main",
+                        },
                       }}
+                      href={`${
+                        item.isEmail ? "mailto" : item.isPhone ? "tel" : ""
+                      }:${item.info}`}
+                      component={item.isEmail || item.isPhone ? "a" : "p"}
                     >
                       {item.info}
                     </Typography>

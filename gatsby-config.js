@@ -112,5 +112,16 @@ module.exports = {
         downloadFiles: true,
       },
     },
+
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [process.env.GATSBY_MEASUREMENT_ID],
+
+        pluginConfig: {
+          head: true,
+        },
+      },
+    },
   ],
 };

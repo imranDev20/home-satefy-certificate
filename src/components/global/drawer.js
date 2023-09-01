@@ -16,16 +16,12 @@ import { Container, Slide, useScrollTrigger } from "@mui/material";
 import { Link } from "gatsby";
 import { theme } from "./layout";
 import { navItems } from "../../utils/constant";
+import { CgArrowLongRight } from "react-icons/cg";
 
 const drawerWidth = 240;
 function HideOnScroll(props) {
-  const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-  });
+  const { children } = props;
+  const trigger = useScrollTrigger();
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -35,7 +31,7 @@ function HideOnScroll(props) {
 }
 
 const DrawerAppBar = (props) => {
-  const { window, location } = props;
+  const { location } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -122,16 +118,16 @@ const DrawerAppBar = (props) => {
                   </Button>
                 ))}
               </Box>
-              {/* <Button
+              <Button
                 variant="blue"
                 color="primary"
                 to="/quote/"
-                LinkComponent={GatsbyLink}
+                LinkComponent={Link}
                 sx={{ ml: 2, display: { xs: "none", lg: "flex" } }}
                 endIcon={<CgArrowLongRight />}
               >
                 Request a Quote
-              </Button> */}
+              </Button>
               <IconButton
                 color="inherit"
                 aria-label="open drawer"

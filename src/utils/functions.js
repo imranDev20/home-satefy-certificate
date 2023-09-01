@@ -27,3 +27,10 @@ export const getFutureTime = () => {
     return deliveryTime;
   }
 };
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // This creates a smooth scrolling effect
+  });
+};

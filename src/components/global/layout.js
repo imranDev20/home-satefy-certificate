@@ -118,6 +118,9 @@ export const theme = createTheme({
               "&:hover": {
                 bgcolor: "secondary.main",
               },
+              "&:disabled": {
+                bgcolor: "#E0E0E0",
+              },
             }),
         },
         {

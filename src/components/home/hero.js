@@ -134,7 +134,6 @@ const Hero = () => {
                         {slide.childMdx.frontmatter.description}
                       </Typography>
                       <Button
-                        disabled
                         endIcon={<CgArrowLongRight />}
                         variant="blue"
                         LinkComponent={GatsbyLink}
