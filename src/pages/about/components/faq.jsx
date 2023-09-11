@@ -1,9 +1,13 @@
-import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
-import CustomizedAccordions from "./faq-accordion";
-import Heading from "../global/heading";
-import { theme } from "../global/layout";
-import Paragraph from "../global/paragraph";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import FaqAccordion from "./faq-accordion";
+// import CustomizedAccordions from "./faq-accordion";
+// import Heading from "../global/heading";
+// import { theme } from "../global/layout";
+// import Paragraph from "../global/paragraph";
 
 const Faq = () => {
   const faqs = [
@@ -100,10 +104,10 @@ const Faq = () => {
 
       <Grid container spacing={3}>
         <Grid item md={6}>
-          <CustomizedAccordions faqs={faqs.slice(0, 5).map((item) => item)} />
+          <FaqAccordion faqs={faqs.slice(0, 5).map((item) => item)} />
         </Grid>
         <Grid item md={6}>
-          <CustomizedAccordions faqs={faqs.slice(5).map((item) => item)} />
+          <FaqAccordion faqs={faqs.slice(5).map((item) => item)} />
         </Grid>
       </Grid>
     </Container>

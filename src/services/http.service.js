@@ -1,6 +1,22 @@
 import axios from "axios";
 
-axios.interceptors.response.use(
+const axiosInstance = axios.create({
+  baseURL: process.env.API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+// Add an interceptor for request errors
+axiosInstance.interceptors.request.use(
+  (config) => config,
+  (error) => {
+    handleErrors(error);
+    return Promise.reject(error);
+  }
+);
+
+axiosInstance.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
@@ -13,11 +29,11 @@ axios.interceptors.response.use(
 );
 
 export const http = {
-  get: axios.get,
-  post: axios.post,
-  delete: axios.delete,
-  put: axios.put,
-  patch: axios.patch,
+  get: axiosInstance.get,
+  post: axiosInstance.post,
+  delete: axiosInstance.delete,
+  put: axiosInstance.put,
+  patch: axiosInstance.patch,
 };
 
 function getErrorMessage(statusCode) {

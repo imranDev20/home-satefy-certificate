@@ -1,12 +1,11 @@
-import { Box, Button, Typography } from "@mui/material";
-import { graphql, useStaticQuery } from "gatsby";
-import BackgroundImage from "gatsby-background-image";
-import { convertToBgImage } from "gbimage-bridge";
 import React from "react";
-import Paragraph from "../global/paragraph";
-import { theme } from "../global/layout";
-import { Link as GatsbyLink } from "gatsby";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import { graphql, useStaticQuery, Link as GatsbyLink } from "gatsby";
 import { CgArrowLongRight } from "react-icons/cg";
+import { GatsbyImage } from "gatsby-plugin-image";
+import Paragraph from "../../../components/global/paragraph";
 
 const Cta = () => {
   const background = useStaticQuery(graphql`
@@ -14,21 +13,34 @@ const Cta = () => {
       file(name: { eq: "about-bg" }) {
         id
         childImageSharp {
-          gatsbyImageData
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
   `);
 
   const image = background.file.childImageSharp.gatsbyImageData;
-  const bgImage = convertToBgImage(image);
 
   return (
-    <BackgroundImage Tag="section" {...bgImage}>
+    <Box
+      sx={{
+        position: "relative",
+        height: 420,
+      }}
+    >
+      <GatsbyImage
+        image={image}
+        style={{
+          height: "100%",
+        }}
+      />
       <Box
         sx={{
           height: "100%",
-          position: "relative",
+          width: "100%",
+          position: "absolute",
+          top: 0,
+          left: 0,
           pt: 10,
           pb: 10,
           "&::before": {
@@ -94,7 +106,7 @@ const Cta = () => {
           </Button>
         </Box>
       </Box>
-    </BackgroundImage>
+    </Box>
   );
 };
 

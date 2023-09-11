@@ -12,7 +12,7 @@ import React from "react";
 import { theme } from "./layout";
 import { Link as GatsbyLink } from "gatsby";
 import { HiChevronRight, HiMapPin, HiEnvelope, HiPhone } from "react-icons/hi2";
-import { contacts, navItems } from "../../utils/constant";
+import { contacts, navItems } from "../../shared/utils/constant";
 
 const others = [
   "Privacy Policy",

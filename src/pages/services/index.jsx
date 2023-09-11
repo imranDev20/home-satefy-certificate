@@ -2,11 +2,11 @@ import { Container, Grid } from "@mui/material";
 import { graphql, useStaticQuery } from "gatsby";
 import { convertToBgImage } from "gbimage-bridge";
 import React from "react";
-import Heading from "../components/global/heading";
-import Layout from "../components/global/layout";
-import PageHeader from "../components/global/page-header";
-import Paragraph from "../components/global/paragraph";
-import ServicesCard from "../components/home/services-card";
+import Heading from "../../components/global/heading";
+import Layout from "../../components/global/layout";
+import PageHeader from "../../components/global/page-header";
+import Paragraph from "../../components/global/paragraph";
+import ServicesCard from "../../components/home/services-card";
 
 const ServicesPage = () => {
   const data = useStaticQuery(graphql`
@@ -44,7 +44,7 @@ const ServicesPage = () => {
   const bgImage = convertToBgImage(background);
 
   return (
-    <Layout>
+    <>
       <PageHeader title="Services" bgImage={bgImage} />
       <Container sx={{ my: 10 }}>
         <Heading sx={{ textAlign: "center", mb: 1 }}>
@@ -74,7 +74,7 @@ const ServicesPage = () => {
           })}
         </Grid>
       </Container>
-    </Layout>
+    </>
   );
 };
 

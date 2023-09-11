@@ -10,12 +10,11 @@ import {
 import { graphql, useStaticQuery } from "gatsby";
 import { convertToBgImage } from "gbimage-bridge";
 import React from "react";
-import Form from "../components/global/form";
-import Heading from "../components/global/heading";
-import Layout from "../components/global/layout";
-import PageHeader from "../components/global/page-header";
-import Paragraph from "../components/global/paragraph";
-import { socials } from "../utils/constant";
+import Form from "../../components/global/form";
+import Heading from "../../components/global/heading";
+import PageHeader from "../../components/global/page-header";
+import Paragraph from "../../components/global/paragraph";
+import { socials } from "../../utils/constant";
 import { FaRegEnvelope, FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
 
 const infoBlocks = [
@@ -72,7 +71,7 @@ const ContactPage = () => {
   const bgImage = convertToBgImage(background);
 
   return (
-    <Layout>
+    <>
       <PageHeader title="Contact" bgImage={bgImage} />
       <Container>
         <Grid container spacing={5} sx={{ my: 10 }}>
@@ -202,7 +201,7 @@ const ContactPage = () => {
           </a>
         </iframe>
       </div>
-    </Layout>
+    </>
   );
 };
 

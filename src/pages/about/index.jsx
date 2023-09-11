@@ -1,12 +1,9 @@
 import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { convertToBgImage } from "gbimage-bridge";
-
-import About from "../components/about/about";
-import Faq from "../components/about/faq";
-import Layout from "../components/global/layout";
-import PageHeader from "../components/global/page-header";
-import Cta from "../components/about/cta";
+import About from "./components/about";
+import Cta from "./components/cta";
+import Faq from "./components/faq";
 
 const AboutPage = () => {
   const background = useStaticQuery(graphql`
@@ -24,12 +21,12 @@ const AboutPage = () => {
   const bgImage = convertToBgImage(image);
 
   return (
-    <Layout>
+    <>
       <PageHeader title="About" bgImage={bgImage} />
       <About />
       <Cta />
       <Faq />
-    </Layout>
+    </>
   );
 };
 

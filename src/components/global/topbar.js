@@ -9,7 +9,7 @@ import {
   BsClockFill,
 } from "react-icons/bs";
 import { theme } from "./layout";
-import { contacts } from "../../utils/constant";
+import { contacts } from "../../shared/utils/constant";
 
 const Topbar = () => {
   return (

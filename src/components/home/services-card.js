@@ -3,6 +3,7 @@ import { Box, Button, Card, Typography } from "@mui/material";
 import { theme } from "../global/layout";
 import { CgArrowLongRight } from "react-icons/cg";
 import { Link as GatsbyLink } from "gatsby";
+import Link from "@mui/material/Link";
 
 function ServicesCard({ service }) {
   const [expand, setExpand] = useState(false);
@@ -12,8 +13,6 @@ function ServicesCard({ service }) {
     <Card
       onMouseOver={() => setExpand(true)}
       onMouseOut={() => setExpand(false)}
-      component={GatsbyLink}
-      to={`/services${service.childMdx.fields?.slug}`}
       elevation={0}
       sx={{
         display: "block",
@@ -72,9 +71,21 @@ function ServicesCard({ service }) {
         alt={title}
         style={{ width: 70, marginBottom: 20 }}
       />
-      <Typography component="h3" sx={{ fontWeight: 600, fontSize: 20 }}>
-        {title}
-      </Typography>
+      <Link
+        component={GatsbyLink}
+        to={`/services${service.childMdx.fields?.slug}`}
+        sx={{
+          textDecoration: "none",
+        }}
+      >
+        <Typography
+          component="h3"
+          sx={{ fontWeight: 600, fontSize: 20, textDecoration: "none" }}
+        >
+          {title}
+        </Typography>
+      </Link>
+
       <Typography
         component="p"
         sx={{ ...theme.typography.body2, mb: 3, mt: 2 }}

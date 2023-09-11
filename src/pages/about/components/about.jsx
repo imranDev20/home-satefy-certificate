@@ -1,22 +1,13 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
-import Heading from "../global/heading";
-import { theme } from "../global/layout";
-import Paragraph from "../global/paragraph";
-import { Check, Phone } from "@mui/icons-material";
-import { contacts } from "../../utils/constant";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+
+import Phone from "@mui/icons-material/Phone";
+import Heading from "../../../components/global/heading";
+import Paragraph from "../../../components/global/paragraph";
 
 const About = () => {
-  const points = [
-    "A comprehensive range of services provided",
-    "Partnership with expert professionals who are registered and experienced in their respective fields.",
-    "Customer rating system for a hassle-free experience and best service",
-    "Free reminder services for service due notifications.",
-    "No contract or direct debit setup required; charges applied only when agreed upon.",
-    "Focus on providing peace of mind service and ensuring tenant safety and insurance claims are not compromised",
-    "General safety check offered for each visited property, providing advance warning before accidents occur.",
-  ];
-
   return (
     <Container
       sx={{
@@ -48,19 +39,6 @@ const About = () => {
               to alleviate the burden of property certifications, providing you
               with peace of mind.
             </Paragraph>
-
-            {/* {points.map((item) => (
-              <Box sx={{ display: "flex" }}>
-                <Check sx={{ color: "primary.main", mt: 0.5, mr: 0.5 }} />{" "}
-                <Paragraph
-                  sx={{
-                    mb: 1,
-                  }}
-                >
-                  {item}
-                </Paragraph>
-              </Box>
-            ))} */}
 
             <Paragraph
               sx={{

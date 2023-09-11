@@ -219,7 +219,9 @@ export const theme = createTheme({
   },
 });
 
-const Layout = ({ children, location }) => {
+const Layout = ({ children, ...props }) => {
+  const { location } = props;
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -231,15 +233,18 @@ const Layout = ({ children, location }) => {
         defer
         id="first-unique-id"
         dangerouslySetInnerHTML={{
-          __html: `var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+          __html: `if(typeof window !== "undefined" && typeof document !== "undefined"){
+            var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
           (function(){
+            
           var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
           s1.async=true;
           s1.src='https://embed.tawk.to/${process.env.GATSBY_TAWK_PROPERTY_ID}/default';
           s1.charset='UTF-8';
           s1.setAttribute('crossorigin','*');
           s0.parentNode.insertBefore(s1,s0);
-          })();`,
+          })();
+          }`,
         }}
       />
 

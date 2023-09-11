@@ -12,7 +12,7 @@ import ServicesCards from "../components/home/services-cards";
 
 const IndexPage = (props) => {
   return (
-    <Layout location={props.location}>
+    <>
       <Hero />
       <ServicesCards />
       <About />
@@ -22,7 +22,7 @@ const IndexPage = (props) => {
       <Process />
       <Achievements />
       <Blogs />
-    </Layout>
+    </>
   );
 };
 

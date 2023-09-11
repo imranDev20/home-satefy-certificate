@@ -15,7 +15,7 @@ import Button from "@mui/material/Button";
 import { Container, Slide, useScrollTrigger } from "@mui/material";
 import { Link } from "gatsby";
 import { theme } from "./layout";
-import { navItems } from "../../utils/constant";
+import { navItems } from "../../shared/utils/constant";
 import { CgArrowLongRight } from "react-icons/cg";
 
 const drawerWidth = 240;

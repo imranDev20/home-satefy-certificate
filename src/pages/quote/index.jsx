@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../components/global/layout";
 import { graphql, useStaticQuery } from "gatsby";
 import { convertToBgImage } from "gbimage-bridge";
-import PageHeader from "../components/global/page-header";
+import PageHeader from "../../components/global/page-header";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CircularProgress from "@mui/material/CircularProgress";
 import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
   Container,
   Divider,
   FormControlLabel,
   FormGroup,
+  FormHelperText,
   FormLabel,
   Grid,
   Radio,
@@ -21,13 +22,17 @@ import {
 } from "@mui/material";
 
 import { Box, Checkbox, FormControl, Stack } from "@mui/material";
-import { getFutureTime, scrollToTop } from "../utils/functions";
+
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { green } from "@mui/material/colors";
-import getStripe from "../utils/stripe";
+import { navigate } from "gatsby";
+import { http } from "../../services/http.service";
+import { CgArrowLongRight } from "react-icons/cg";
+import { Controller, useForm } from "react-hook-form";
+import { getFutureTime } from "../../shared/utils/functions";
 
-const Quote = ({ location }) => {
+const QuotePage = ({ location }) => {
   const data = useStaticQuery(graphql`
     query QuoteQuery {
       file(name: { eq: "about-bg" }) {
@@ -49,6 +54,18 @@ const Quote = ({ location }) => {
       }
     }
   `);
+
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      postCode: "",
+      address: "",
+      notes: "",
+    },
+  });
+
   const [loading, setLoading] = useState(false);
 
   const [isGas, setIsGas] = useState(true);
@@ -63,26 +80,26 @@ const Quote = ({ location }) => {
   const [date, setDate] = useState(getFutureTime());
   const [isConfirm, setIsConfirm] = useState(false);
   const [lineItems, setLineItems] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [selectedServices, setSelectedServices] = useState([]);
   const [timeframe, setTimeframe] = useState("");
   const [tfl, setTfl] = useState("");
 
   const image = data.file.childImageSharp.gatsbyImageData;
   const bgImage = convertToBgImage(image);
 
-  useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      event.returnValue = ""; // Required for Chrome
-      alert("Are you sure you want to leave?");
-    };
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     event.preventDefault();
+  //     event.returnValue = "";
+  //     alert("Are you sure you want to leave?");
+  //   };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
 
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (!isGas) {
@@ -145,32 +162,52 @@ const Quote = ({ location }) => {
       newLineItems.map((item) => item.price).includes(price.id)
     );
 
-    setSelectedProducts(selected.sort((a, b) => b.unit_amount - a.unit_amount));
+    setSelectedServices(selected.sort((a, b) => b.unit_amount - a.unit_amount));
 
     scrollToTop();
     setIsConfirm(true);
   };
 
-  const redirectToCheckout = async (event) => {
-    event.preventDefault();
-    setLoading(true);
+  const isInfoFilledUp = !(
+    (!isEicr && !isGas && !isEpc) ||
+    (isGas && gasItem === "") ||
+    (isEicr && eicrItem === "") ||
+    (isEpc && epcItem === "") ||
+    tfl === "" ||
+    timeframe === ""
+  );
 
-    const stripe = await getStripe();
-    const result = await stripe.redirectToCheckout({
-      mode: "payment",
-      lineItems: lineItems,
-      successUrl: `http://localhost:8000/`,
-      cancelUrl: `http://localhost:8000/quote`,
-    });
+  const onSubmit = async (data) => {
+    try {
+      setLoading(true);
 
-    if (result.error) {
-      console.warn("Error:", result.error);
-      setLoading(false);
+      const payload = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        postCode: data.postCode,
+        address: data.address,
+        notes: data.notes,
+        services: selectedServices,
+        lineItems: lineItems,
+      };
+
+      const response = await http.post(
+        "/orders/create-checkout-session",
+        payload
+      );
+
+      if (response.data.sessionUrl) {
+        navigate(response.data.sessionUrl);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
   return (
-    <Layout location={location}>
+    <>
       <PageHeader title="Request a Quote" bgImage={bgImage} />
       <Container
         maxWidth="sm"
@@ -186,11 +223,7 @@ const Quote = ({ location }) => {
             <CardHeader title="Please provide the required informations" />
 
             <CardContent>
-              <Stack
-                component="form"
-                spacing={3}
-                sx={{ my: 2, maxWidth: 500, mx: "auto" }}
-              >
+              <Stack spacing={3} sx={{ my: 2, maxWidth: 500, mx: "auto" }}>
                 <FormControl component="fieldset" variant="standard">
                   <FormLabel
                     component="legend"
@@ -569,15 +602,23 @@ const Quote = ({ location }) => {
                 <Button
                   variant="blue"
                   onClick={handleReview}
-                  disabled={
-                    (!isEicr && !isGas && !isEpc) ||
-                    (isGas && gasItem === "") ||
-                    (isEicr && eicrItem === "") ||
-                    (isEpc && epcItem === "")
-                  }
+                  disabled={!isInfoFilledUp}
                 >
                   Review Order
                 </Button>
+
+                {!isInfoFilledUp ? (
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <FormHelperText error>
+                      Please fill up the required informations.
+                    </FormHelperText>
+                  </Box>
+                ) : null}
               </Stack>
             </CardContent>
           </Card>
@@ -589,59 +630,65 @@ const Quote = ({ location }) => {
               <CardHeader title="Review your order and checkout" />
 
               <CardContent>
-                <Stack sx={{ mb: 5 }} spacing={3}>
+                <Box
+                  sx={{
+                    border: "1px solid",
+                    borderColor: "lightgray",
+                    p: 2,
+                    borderRadius: 1,
+                  }}
+                >
                   <Box
                     sx={{
-                      border: "1px solid",
-                      borderColor: "lightgray",
-                      p: 2,
-                      borderRadius: 1,
+                      display: "flex",
+                      justifyContent: "space-between",
                     }}
                   >
+                    <Typography
+                      sx={{
+                        fontWeight: 500,
+                      }}
+                    >
+                      Servics
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontWeight: 500,
+                      }}
+                    >
+                      Price
+                    </Typography>
+                  </Box>
+                  <Divider sx={{ my: 2 }} />
+
+                  {selectedServices.map((product) => (
                     <Box
+                      key={product.id}
                       sx={{
                         display: "flex",
                         justifyContent: "space-between",
+                        mb: 1,
                       }}
                     >
+                      <Typography>{product.product.name}</Typography>
                       <Typography
                         sx={{
                           fontWeight: 500,
                         }}
                       >
-                        Servics
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontWeight: 500,
-                        }}
-                      >
-                        Price
+                        £{product.unit_amount / 100}
                       </Typography>
                     </Box>
-                    <Divider sx={{ my: 2 }} />
+                  ))}
+                </Box>
 
-                    {selectedProducts.map((product) => (
-                      <Box
-                        key={product.id}
-                        sx={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          mb: 1,
-                        }}
-                      >
-                        <Typography>{product.product.name}</Typography>
-                        <Typography
-                          sx={{
-                            fontWeight: 500,
-                          }}
-                        >
-                          £{product.unit_amount / 100}
-                        </Typography>
-                      </Box>
-                    ))}
-                  </Box>
-
+                <Box
+                  sx={{
+                    mt: 3,
+                  }}
+                  component="form"
+                  onSubmit={handleSubmit(onSubmit)}
+                >
                   <Box
                     sx={{
                       border: "1px solid",
@@ -661,86 +708,147 @@ const Quote = ({ location }) => {
 
                     <Grid container spacing={3} sx={{ mt: 1 }}>
                       <Grid item md={6}>
-                        <TextField
-                          fullWidth
-                          required
-                          size="small"
-                          label="Name"
+                        <Controller
+                          name="name"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              {...field}
+                              fullWidth
+                              required
+                              size="small"
+                              label="Name"
+                            />
+                          )}
                         />
                       </Grid>
                       <Grid item md={6}>
-                        <TextField
-                          fullWidth
-                          required
-                          size="small"
-                          label="Email"
+                        <Controller
+                          name="email"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              {...field}
+                              fullWidth
+                              required
+                              size="small"
+                              label="Email"
+                            />
+                          )}
                         />
                       </Grid>
                       <Grid item md={6}>
-                        <TextField
-                          fullWidth
-                          required
-                          size="small"
-                          label="Phone"
+                        <Controller
+                          name="phone"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              {...field}
+                              fullWidth
+                              required
+                              size="small"
+                              label="Phone"
+                            />
+                          )}
                         />
                       </Grid>
                       <Grid item md={6}>
-                        <TextField
-                          fullWidth
-                          required
-                          size="small"
-                          label="Post Code"
+                        <Controller
+                          name="postCode"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              {...field}
+                              fullWidth
+                              required
+                              size="small"
+                              label="Post Code"
+                            />
+                          )}
                         />
                       </Grid>
 
                       <Grid item md={12}>
-                        <TextField
-                          fullWidth
-                          required
-                          multiline
-                          rows={3}
-                          size="small"
-                          label="Address"
+                        <Controller
+                          name="address"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              {...field}
+                              fullWidth
+                              required
+                              multiline
+                              rows={3}
+                              size="small"
+                              label="Address"
+                            />
+                          )}
                         />
                       </Grid>
                       <Grid item md={12}>
-                        <TextField
-                          fullWidth
-                          multiline
-                          rows={3}
-                          size="small"
-                          label="Additional Notes"
+                        <Controller
+                          name="notes"
+                          control={control}
+                          render={({ field }) => (
+                            <TextField
+                              {...field}
+                              fullWidth
+                              required
+                              multiline
+                              rows={3}
+                              size="small"
+                              label="Additional Notes"
+                            />
+                          )}
                         />
                       </Grid>
                     </Grid>
                   </Box>
-                </Stack>
 
-                <Stack spacing={2}>
-                  <Button
-                    variant="blue-outlined"
-                    onClick={() => {
-                      scrollToTop();
-                      setIsConfirm(false);
-                      setLineItems([]);
-                    }}
-                  >
-                    Go Back
-                  </Button>
-                  <Button variant="blue" onClick={redirectToCheckout}>
-                    Request a Quote
-                  </Button>
-                </Stack>
+                  <Stack sx={{ mt: 3 }} spacing={2}>
+                    <Button
+                      variant="blue-outlined"
+                      onClick={() => {
+                        scrollToTop();
+                        setIsConfirm(false);
+                        setLineItems([]);
+                      }}
+                    >
+                      Go Back
+                    </Button>
+
+                    <Button
+                      variant="blue"
+                      type="submit"
+                      // disabled={loading}
+
+                      endIcon={
+                        loading ? (
+                          <CircularProgress
+                            size={20}
+                            sx={{
+                              color: "text.main",
+                            }}
+                          />
+                        ) : (
+                          <CgArrowLongRight />
+                        )
+                      }
+                    >
+                      Request a Quote
+                    </Button>
+                  </Stack>
+                </Box>
               </CardContent>
             </Card>
           </>
         )}
       </Container>
-    </Layout>
+    </>
   );
 };
 
-export default Quote;
+export default QuotePage;
 
 export const Head = () => (
   <>
@@ -758,3 +866,6 @@ export const Head = () => (
     />
   </>
 );
+
+// component="form"
+// onSubmit={handleSubmit(onSubmit)}
